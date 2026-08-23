@@ -1,1085 +1,929 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatpoa</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f5f7;
-    }
-
-    .topbar {
-      height: 60px;
-      background: #1877f2;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-      position: relative;
-    }
-
-    .menuBtn {
-      font-size: 30px;
-      cursor: pointer;
-      margin-right: 15px;
-    }
-
-    .topbar h2 {
-      margin: 0;
-    }
-
-    .container {
-      max-width: 450px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    input,
-    textarea,
-    select,
-    button {
-      width: 100%;
-      padding: 12px;
-      margin: 7px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      background: #1877f2;
-      color: white;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .secondary {
-      background: #555;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    #sideMenu {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      width: 240px;
-      background: white;
-      box-shadow: 2px 4px 10px #0003;
-      padding: 15px;
-      z-index: 20;
-    }
-
-    #sideMenu button {
-      background: white;
-      color: #222;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-    }
-
-    .searchBox {
-      display: flex;
-      gap: 5px;
-    }
-
-    .searchBox input {
-      flex: 1;
-    }
-
-    .searchBox button {
-      width: 90px;
-    }
-
-    .sectionTitle {
-      margin-top: 25px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 8px;
-    }
-
-    .chatCard {
-      padding: 14px;
-      margin: 8px 0;
-      background: #f5f7f9;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+<!DOCTYPE html>  <html lang="sw">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Chatpoa</title>    <style>  
+    * {  
+      box-sizing: border-box;  
+    }  
+  
+    body {  
+      margin: 0;  
+      font-family: Arial, sans-serif;  
+      background: #f2f5f7;  
+    }  
+  
+    .topbar {  
+      height: 60px;  
+      background: #1877f2;  
+      color: white;  
+      display: flex;  
+      align-items: center;  
+      padding: 0 15px;  
+      position: relative;  
+    }  
+  
+    .menuBtn {  
+      font-size: 30px;  
+      cursor: pointer;  
+      margin-right: 15px;  
+    }  
+  
+    .topbar h2 {  
+      margin: 0;  
+    }  
+  
+    .container {  
+      max-width: 450px;  
+      margin: 20px auto;  
+      background: white;  
+      padding: 20px;  
+      border-radius: 15px;  
+    }  
+  
+    input, textarea, select, button {  
+      width: 100%;  
+      padding: 12px;  
+      margin: 7px 0;  
+      border-radius: 8px;  
+      border: 1px solid #ccc;  
+    }  
+  
+    button {  
+      background: #1877f2;  
+      color: white;  
+      border: none;  
+      font-weight: bold;  
+      cursor: pointer;  
+    }  
+  
+    .secondary {  
+      background: #555;  
+    }  
+  
+    .hidden {  
+      display: none !important;  
+    }  
+  
+    #sideMenu {  
+      position: fixed;  
+      top: 60px;  
+      left: 0;  
+      width: 240px;  
+      background: white;  
+      box-shadow: 2px 4px 10px #0003;  
+      padding: 15px;  
+      z-index: 20;  
+    }  
+  
+    #sideMenu button {  
+      background: white;  
+      color: #222;  
+      text-align: left;  
+      border-bottom: 1px solid #eee;  
+    }  
+  
+    .searchBox {  
+      display: flex;  
+      gap: 5px;  
+    }  
+  
+    .searchBox input {  
+      flex: 1;  
+    }  
+  
+    .searchBox button {  
+      width: 90px;  
+    }  
+  
+    .sectionTitle {  
+      margin-top: 25px;  
+      border-bottom: 1px solid #ddd;  
+      padding-bottom: 8px;  
+    }  
+  
+    .chatCard {  
+      padding: 14px;  
+      margin: 8px 0;  
+      background: #f5f7f9;  
+      border-radius: 10px;  
+      cursor: pointer;  
+    }  
+  
+    .chatCard:hover {  
+      background: #e5edf7;  
+    }  
+  
+    .profileIcon {  
+      width: 80px;  
+      height: 80px;  
+      background: #ddd;  
+      border-radius: 50%;  
+      margin: auto;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      font-size: 35px;  
+    }  
+  
+    #message,  
+    #profileMessage,  
+    #groupMessage,  
+    #privateMessage {  
+      text-align: center;  
+      font-weight: bold;  
+    }  
+  </style>  </head>  <body>  <!-- SIGNUP / LOGIN -->  <div id="authArea" class="container">    <h1>Karibu Chatpoa</h1>    <h2>Jisajili</h2>    <input type="text" id="name" placeholder="Jina lako">    <input type="email" id="email" placeholder="Email">    <input type="password" id="password" placeholder="Password">  <button id="signupBtn">Jisajili</button>
 
-    .chatCard:hover {
-      background: #e5edf7;
-    }
+  <hr>    <h2>Login</h2>    <input type="email" id="loginEmail" placeholder="Email">    <input type="password" id="loginPassword" placeholder="Password">  <button id="loginBtn">Login</button>
 
-    .profileIcon {
-      width: 80px;
-      height: 80px;
-      background: #ddd;
-      border-radius: 50%;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 35px;
-    }
+  <p id="message"></p>  </div>  <!-- APP -->  <div id="appArea" class="hidden">    <div class="topbar">  <span class="menuBtn" id="menuBtn">⋮</span>  
 
-    #message,
-    #profileMessage,
-    #groupMessage,
-    #privateMessage {
-      text-align: center;
-      font-weight: bold;
-    }
+<h2>Chatpoa</h2>
 
-    #languageArea h2 {
-      text-align: center;
-    }
+  </div>    <!-- MENU -->    <div id="sideMenu" class="hidden">  <button id="chatsMenuBtn">💬 Chats</button>  
 
-    #languageSelect {
-      font-size: 16px;
-      background: white;
-    }
-  </style>
-</head>
+<button id="profileBtn">👤 Profile</button>  
 
-<body>
+<button id="languageBtn">🌐 Language</button>  
 
-<!-- SIGNUP / LOGIN -->
+<button id="settingsBtn">⚙️ Settings</button>  
 
-<div id="authArea" class="container">
+<button id="logoutBtn">🚪 Logout</button>
 
-  <h1>Karibu Chatpoa</h1>
+  </div>    <!-- CHATS HOME -->    <div id="chatsArea" class="container">  <h2>💬 Chats</h2>  
 
-  <h2>Jisajili</h2>
+<div class="searchBox">  
 
-  <input
-    type="text"
-    id="name"
-    placeholder="Jina lako"
-  >
+  <input  
+    type="text"  
+    id="searchUser"  
+    placeholder="🔍 Tafuta mtu..."  
+  >  
 
-  <input
-    type="email"
-    id="email"
-    placeholder="Email"
-  >
+  <button id="searchBtn">Tafuta</button>  
 
-  <input
-    type="password"
-    id="password"
-    placeholder="Password"
-  >
+</div>  
 
-  <button id="signupBtn">Jisajili</button>
+<p id="searchResult"></p>  
 
-  <hr>
 
-  <h2>Login</h2>
+<h3 class="sectionTitle">👤 Private Chats</h3>  
 
-  <input
-    type="email"
-    id="loginEmail"
-    placeholder="Email"
-  >
+<div id="privateChats">  
 
-  <input
-    type="password"
-    id="loginPassword"
-    placeholder="Password"
-  >
+  <div class="chatCard">  
+    Hakuna private chat bado.  
+  </div>  
 
-  <button id="loginBtn">Login</button>
+</div>  
 
-  <p id="message"></p>
 
-</div>
+<h3 class="sectionTitle">👥 Groups</h3>  
 
+<div id="groupChats">  
 
-<!-- APP -->
+  <div class="chatCard">  
+    Hakuna group bado.  
+  </div>  
 
-<div id="appArea" class="hidden">
+</div>  
 
-  <!-- TOP BAR -->
 
-  <div class="topbar">
+<button id="newChatBtn">➕ New Chat</button>  
 
-    <span class="menuBtn" id="menuBtn">⋮</span>
+<button id="newGroupBtn">👥 Create Group</button>
 
-    <h2 id="appTitle">Chatpoa</h2>
+  </div>    <!-- PRIVATE CHAT -->    <div id="privateChatArea" class="container hidden">  <h2 id="privateChatTitle">👤 Private Chat</h2>  
 
-  </div>
+<div  
+  id="chatMessages"  
+  style="min-height:150px;background:#f5f5f5;padding:10px;border-radius:10px;"  
+>  
+  <p>Hakuna ujumbe bado.</p>  
+</div>  
 
+<input  
+  type="text"  
+  id="chatInput"  
+  placeholder="Andika ujumbe..."  
+>  
 
-  <!-- MENU -->
+<button id="sendBtn">Tuma</button>  
 
-  <div id="sideMenu" class="hidden">
+<button class="secondary" id="backChatsBtn">  
+  ← Rudi Chats  
+</button>  
 
-    <button id="chatsMenuBtn">💬 Chats</button>
+<p id="privateMessage"></p>
 
-    <button id="profileBtn">👤 Profile</button>
+  </div>    <!-- CREATE GROUP -->    <div id="groupArea" class="container hidden">  <h2>👥 Create Group</h2>  
 
-    <button id="languageBtn">🌐 Language</button>
+<input  
+  type="text"  
+  id="groupName"  
+  placeholder="Jina la group"  
+>  
 
-    <button id="settingsBtn">⚙️ Settings</button>
+<textarea  
+  id="groupDescription"  
+  placeholder="Maelezo ya group"  
+></textarea>  
 
-    <button id="logoutBtn">🚪 Logout</button>
+<input  
+  type="text"  
+  id="groupMembers"  
+  placeholder="Emails za members, mfano: a@gmail.com, b@gmail.com"  
+>  
 
-  </div>
+<button id="saveGroupBtn">  
+  Tengeneza Group  
+</button>  
 
-
-  <!-- CHATS HOME -->
-
-  <div id="chatsArea" class="container">
-
-    <h2 id="chatsTitle">💬 Chats</h2>
-
-    <div class="searchBox">
-
-      <input
-        type="text"
-        id="searchUser"
-        placeholder="🔍 Tafuta mtu..."
-      >
-
-      <button id="searchBtn">Tafuta</button>
-
-    </div>
-
-    <p id="searchResult"></p>
-
-
-    <h3 class="sectionTitle" id="privateChatsTitle">
-      👤 Private Chats
-    </h3>
-
-    <div id="privateChats">
-
-      <div class="chatCard" id="noPrivateText">
-        Hakuna private chat bado.
-      </div>
-
-    </div>
-
-
-    <h3 class="sectionTitle" id="groupsTitle">
-      👥 Groups
-    </h3>
-
-    <div id="groupChats">
-
-      <div class="chatCard" id="noGroupsText">
-        Hakuna group bado.
-      </div>
-
-    </div>
-
-
-    <button id="newChatBtn">
-      ➕ New Chat
-    </button>
-
-    <button id="newGroupBtn">
-      👥 Create Group
-    </button>
-
-  </div>
-
-
-  <!-- PRIVATE CHAT -->
-
-  <div id="privateChatArea" class="container hidden">
-
-    <h2 id="privateChatTitle">
-      👤 Private Chat
-    </h2>
-
-    <div
-      id="chatMessages"
-      style="min-height:150px;background:#f5f5f5;padding:10px;border-radius:10px;"
-    >
-      <p id="noMessagesText">
-        Hakuna ujumbe bado.
-      </p>
-    </div>
-
-    <input
-      type="text"
-      id="chatInput"
-      placeholder="Andika ujumbe..."
-    >
-
-    <button id="sendBtn">
-      Tuma
-    </button>
-
-    <button class="secondary" id="backChatsBtn">
-      ← Rudi Chats
-    </button>
-
-    <p id="privateMessage"></p>
-
-  </div>
-
-
-  <!-- CREATE GROUP -->
-
-  <div id="groupArea" class="container hidden">
-
-    <h2 id="createGroupTitle">
-      👥 Create Group
-    </h2>
-
-    <input
-      type="text"
-      id="groupName"
-      placeholder="Jina la group"
-    >
-
-    <textarea
-      id="groupDescription"
-      placeholder="Maelezo ya group"
-    ></textarea>
-
-    <input
-      type="text"
-      id="groupMembers"
-      placeholder="Emails za members, mfano: a@gmail.com, b@gmail.com"
-    >
-
-    <button id="saveGroupBtn">
-      Tengeneza Group
-    </button>
-
-    <button class="secondary" id="backGroupBtn">
-      ← Rudi Chats
-    </button>
-
-    <p id="groupMessage"></p>
-
-  </div>
-
-
-  <!-- PROFILE -->
-
-  <div id="profileArea" class="container hidden">
-
-    <h2 id="profileTitle">
-      👤 Profile
-    </h2>
-
-    <div class="profileIcon">
-      👤
-    </div>
-
-    <input
-      type="text"
-      id="profileName"
-      placeholder="Jina"
-    >
-
-    <textarea
-      id="profileBio"
-      placeholder="Andika kuhusu wewe"
-    ></textarea>
-
-    <input
-      type="text"
-      id="profileCountry"
-      placeholder="Nchi"
-    >
-
-    <select id="profileLanguage">
-
-      <option value="sw">Kiswahili</option>
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="es">Español</option>
-      <option value="ar">العربية</option>
-
-    </select>
-
-    <button id="saveProfileBtn">
-      💾 Save Profile
-    </button>
-
-    <button class="secondary" id="backProfileBtn">
-      ← Chats
-    </button>
-
-    <p id="profileMessage"></p>
-
-  </div>
-
-
-  <!-- LANGUAGE -->
-
-  <div id="languageArea" class="container hidden">
-
-    <h2 id="languageTitle">
-      🌐 Language
-    </h2>
-
-    <select id="languageSelect">
-
-      <option value="sw">🇹🇿 Kiswahili</option>
-
-      <option value="en">🇬🇧 English</option>
-
-      <option value="fr">🇫🇷 Français</option>
-
-      <option value="es">🇪🇸 Español</option>
-
-      <option value="ar">🇸🇦 العربية</option>
-
-    </select>
-
-    <button id="saveLanguageBtn">
-      Hifadhi Lugha
-    </button>
-
-    <button class="secondary" id="backLanguageBtn">
-      ← Chats
-    </button>
-
-  </div>
-
-
-  <!-- SETTINGS -->
-
-  <div id="settingsArea" class="container hidden">
-
-    <h2 id="settingsTitle">
-      ⚙️ Settings
-    </h2>
-
-    <p id="settingsText">
-      Settings za Chatpoa zitaongezwa hapa.
-    </p>
-
-    <button class="secondary" id="backSettingsBtn">
-      ← Chats
-    </button>
-
-  </div>
-
-</div>
-
-
-<script type="module">
-
-  /* =========================
-     FIREBASE
-  ========================= */
-
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-  import {
-    getFirestore,
-    doc,
-    setDoc,
-    getDoc,
-    collection,
-    query,
-    where,
-    getDocs
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-  const firebaseConfig = {
-
-    apiKey: "AIzaSyDeucp2-feD8Ml-nrBdgRyrwMQ78tZ0GAA",
-
-    authDomain: "chatpoa-48730.firebaseapp.com",
-
-    projectId: "chatpoa-48730",
-
-    storageBucket: "chatpoa-48730.firebasestorage.app",
-
-    messagingSenderId: "461917880378",
-
-    appId: "1:461917880378:web:9ac8f125ac6790b44fb503",
-
-    measurementId: "G-V55XB311DP"
-
-  };
-
-
-  const app = initializeApp(firebaseConfig);
-
-  const auth = getAuth(app);
-
-  const db = getFirestore(app);
-
-
-  /* =========================
-     PAGES
-  ========================= */
-
-  const chatsArea =
-    document.getElementById("chatsArea");
-
-  const privateChatArea =
-    document.getElementById("privateChatArea");
-
-  const groupArea =
-    document.getElementById("groupArea");
-
-  const profileArea =
-    document.getElementById("profileArea");
-
-  const languageArea =
-    document.getElementById("languageArea");
-
-  const settingsArea =
-    document.getElementById("settingsArea");
-
-  const sideMenu =
-    document.getElementById("sideMenu");
-
-
-  function hidePages() {
-
-    chatsArea.classList.add("hidden");
-
-    privateChatArea.classList.add("hidden");
-
-    groupArea.classList.add("hidden");
-
-    profileArea.classList.add("hidden");
-
-    languageArea.classList.add("hidden");
-
-    settingsArea.classList.add("hidden");
-
-  }
-
-
-  function showChats() {
-
-    hidePages();
-
-    chatsArea.classList.remove("hidden");
-
-    sideMenu.classList.add("hidden");
-
-  }
-
-
-  /* =========================
-     LANGUAGE SYSTEM
-  ========================= */
-
-  const translations = {
-
-    sw: {
-
-      chats: "💬 Chats",
-      profile: "👤 Profile",
-      language: "🌐 Language",
-      settings: "⚙️ Settings",
-      logout: "🚪 Logout",
-
-      chatsTitle: "💬 Chats",
-      privateChats: "👤 Private Chats",
-      noPrivate: "Hakuna private chat bado.",
-
-      groups: "👥 Groups",
-      noGroups: "Hakuna group bado.",
-
-      newChat: "➕ New Chat",
-      createGroup: "👥 Create Group",
-
-      privateChat: "👤 Private Chat",
-
-      send: "Tuma",
-      backChats: "← Rudi Chats",
-
-      languageTitle: "🌐 Language",
-      saveLanguage: "Hifadhi Lugha",
-
-      profileTitle: "👤 Profile",
-      saveProfile: "💾 Hifadhi Profile",
-
-      settingsTitle: "⚙️ Settings",
-      settingsText: "Settings za Chatpoa zitaongezwa hapa.",
-
-      createGroupTitle: "👥 Create Group",
-
-      search: "Tafuta",
-
-      searchPlaceholder: "🔍 Tafuta mtu...",
-      messagePlaceholder: "Andika ujumbe..."
-    },
-
-
-    en: {
-
-      chats: "💬 Chats",
-      profile: "👤 Profile",
-      language: "🌐 Language",
-      settings: "⚙️ Settings",
-      logout: "🚪 Logout",
-
-      chatsTitle: "💬 Chats",
-      privateChats: "👤 Private Chats",
-      noPrivate: "No private chats yet.",
-
-      groups: "👥 Groups",
-      noGroups: "No groups yet.",
-
-      newChat: "➕ New Chat",
-      createGroup: "👥 Create Group",
-
-      privateChat: "👤 Private Chat",
-
-      send: "Send",
-      backChats: "← Back to Chats",
-
-      languageTitle: "🌐 Language",
-      saveLanguage: "Save Language",
-
-      profileTitle: "👤 Profile",
-      saveProfile: "💾 Save Profile",
-
-      settingsTitle: "⚙️ Settings",
-      settingsText: "Chatpoa settings will be added here.",
-
-      createGroupTitle: "👥 Create Group",
-
-      search: "Search",
-
-      searchPlaceholder: "🔍 Search for someone...",
-      messagePlaceholder: "Type a message..."
-    },
-
-
-    fr: {
-
-      chats: "💬 Discussions",
-      profile: "👤 Profil",
-      language: "🌐 Langue",
-      settings: "⚙️ Paramètres",
-      logout: "🚪 Déconnexion",
-
-      chatsTitle: "💬 Discussions",
-      privateChats: "👤 Discussions privées",
-      noPrivate: "Aucune discussion privée.",
-
-      groups: "👥 Groupes",
-      noGroups: "Aucun groupe.",
-
-      newChat: "➕ Nouvelle discussion",
-      createGroup: "👥 Créer un groupe",
-
-      privateChat: "👤 Discussion privée",
-
-      send: "Envoyer",
-      backChats: "← Retour aux discussions",
-
-      languageTitle: "🌐 Langue",
-      saveLanguage: "Enregistrer la langue",
-
-      profileTitle: "👤 Profil",
-      saveProfile: "💾 Enregistrer le profil",
-
-      settingsTitle: "⚙️ Paramètres",
-      settingsText: "Les paramètres de Chatpoa seront ajoutés ici.",
-
-      createGroupTitle: "👥 Créer un groupe",
-
-      search: "Rechercher",
-
-      searchPlaceholder: "🔍 Rechercher quelqu'un...",
-      messagePlaceholder: "Écrire un message..."
-    },
-
-
-    es: {
-
-      chats: "💬 Chats",
-      profile: "👤 Perfil",
-      language: "🌐 Idioma",
-      settings: "⚙️ Configuración",
-      logout: "🚪 Cerrar sesión",
-
-      chatsTitle: "💬 Chats",
-      privateChats: "👤 Chats privados",
-      noPrivate: "No hay chats privados.",
-
-      groups: "👥 Grupos",
-      noGroups: "No hay grupos.",
-
-      newChat: "➕ Nuevo chat",
-      createGroup: "👥 Crear grupo",
-
-      privateChat: "👤 Chat privado",
-
-      send: "Enviar",
-      backChats: "← Volver a Chats",
-
-      languageTitle: "🌐 Idioma",
-      saveLanguage: "Guardar idioma",
-
-      profileTitle: "👤 Perfil",
-      saveProfile: "💾 Guardar perfil",
-
-      settingsTitle: "⚙️ Configuración",
-      settingsText: "La configuración de Chatpoa se añadirá aquí.",
-
-      createGroupTitle: "👥 Crear grupo",
-
-      search: "Buscar",
-
-      searchPlaceholder: "🔍 Buscar a alguien...",
-      messagePlaceholder: "Escribe un mensaje..."
-    },
-
-
-    ar: {
-
-      chats: "💬 الدردشات",
-      profile: "👤 الملف الشخصي",
-      language: "🌐 اللغة",
-      settings: "⚙️ الإعدادات",
-      logout: "🚪 تسجيل الخروج",
-
-      chatsTitle: "💬 الدردشات",
-      privateChats: "👤 الدردشات الخاصة",
-      noPrivate: "لا توجد محادثات خاصة بعد.",
-
-      groups: "👥 المجموعات",
-      noGroups: "لا توجد مجموعات بعد.",
-
-      newChat: "➕ محادثة جديدة",
-      createGroup: "👥 إنشاء مجموعة",
-
-      privateChat: "👤 محادثة خاصة",
-
-      send: "إرسال",
-      backChats: "← العودة إلى الدردشات",
-
-      languageTitle: "🌐 اللغة",
-      saveLanguage: "حفظ اللغة",
-
-      profileTitle: "👤 الملف الشخصي",
-      saveProfile: "💾 حفظ الملف الشخصي",
-
-      settingsTitle: "⚙️ الإعدادات",
-      settingsText: "ستتم إضافة إعدادات Chatpoa هنا.",
-
-      createGroupTitle: "👥 إنشاء مجموعة",
-
-      search: "بحث",
-
-      searchPlaceholder: "🔍 ابحث عن شخص...",
-      messagePlaceholder: "اكتب رسالة..."
-    }
-
-  };
-
-
-  function applyLanguage(lang) {
-
-    const t =
-      translations[lang] || translations.sw;
-
-
-    document.documentElement.lang = lang;
-
-
-    document.getElementById("chatsMenuBtn").textContent =
-      t.chats;
-
-    document.getElementById("profileBtn").textContent =
-      t.profile;
-
-    document.getElementById("languageBtn").textContent =
-      t.language;
-
-    document.getElementById("settingsBtn").textContent =
-      t.settings;
-
-    document.getElementById("logoutBtn").textContent =
-      t.logout;
-
-
-    document.getElementById("chatsTitle").textContent =
-      t.chatsTitle;
-
-    document.getElementById("privateChatsTitle").textContent =
-      t.privateChats;
-
-    document.getElementById("noPrivateText").textContent =
-      t.noPrivate;
-
-    document.getElementById("groupsTitle").textContent =
-      t.groups;
-
-    document.getElementById("noGroupsText").textContent =
-      t.noGroups;
-
-
-    document.getElementById("newChatBtn").textContent =
-      t.newChat;
-
-    document.getElementById("newGroupBtn").textContent =
-      t.createGroup;
-
-
-    document.getElementById("privateChatTitle").textContent =
-      t.privateChat;
-
-    document.getElementById("sendBtn").textContent =
-      t.send;
-
-    document.getElementById("backChatsBtn").textContent =
-      t.backChats;
-
-
-    document.getElementById("languageTitle").textContent =
-      t.languageTitle;
-
-    document.getElementById("saveLanguageBtn").textContent =
-      t.saveLanguage;
-
-    document.getElementById("backLanguageBtn").textContent =
-      t.backChats;
-
-
-    document.getElementById("profileTitle").textContent =
-      t.profileTitle;
-
-    document.getElementById("saveProfileBtn").textContent =
-      t.saveProfile;
-
-    document.getElementById("backProfileBtn").textContent =
-      t.backChats;
-
-
-    document.getElementById("settingsTitle").textContent =
-      t.settingsTitle;
-
-    document.getElementById("settingsText").textContent =
-      t.settingsText;
-
-    document.getElementById("backSettingsBtn").textContent =
-      t.backChats;
-
-
-    document.getElementById("createGroupTitle").textContent =
-      t.createGroupTitle;
-
-    document.getElementById("searchBtn").textContent =
-      t.search;
-
-
-    document.getElementById("searchUser").placeholder =
-      t.searchPlaceholder;
-
-    document.getElementById("chatInput").placeholder =
-      t.messagePlaceholder;
-
-  }
-
-
-  /* =========================
-     SIGNUP
-  ========================= */
-
-  document.getElementById("signupBtn")
-    .addEventListener("click", async () => {
-
-      const name =
-        document.getElementById("name").value.trim();
-
-      const email =
-        document.getElementById("email").value.trim();
-
-      const password =
-        document.getElementById("password").value;
-
-
-      if (!name || !email || !password) {
-
-        document.getElementById("message").textContent =
-          "Jaza taarifa zote.";
-
-        return;
-      }
-
-
-      try {
-
-        const userCredential =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-
-        await setDoc(
-          doc(db, "users", userCredential.user.uid),
-          {
-            name: name,
-            email: email,
-            bio: "",
-            country: "",
-            language: "sw"
-          }
-        );
-
-
-        document.getElementById("message").textContent =
-          "Umejisajili kikamilifu!";
-
-      }
-
-      catch (error) {
-
-        document.getElementById("message").textContent =
-          error.message;
-
-      }
-
-    });
-
-
-  /* =========================
-     LOGIN
-  ========================= */
-
-  document.getElementById("loginBtn")
-    .addEventListener("click", async () => {
-
-      const email =
-        document.getElementById("loginEmail").value.trim();
-
-      const password =
-        document.getElementById("loginPassword").value;
-
-
-      if (!email || !password) {
-
-        document.getElementById("message").textContent =
-          "Weka email na password.";
-
-        return;
-      }
-
-
-      try {
-
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-      }
-
-      catch (error) {
-
-        document.getElementById("message").textContent =
-          error.message;
-
-      }
-
-    });
-
-
-  /* =========================
-     AUTH
-  ========================= */
-
-  onAuthStateChanged(auth, async (user) => {
-
-    if (user) {
-
-      document.getElementById("authArea")
-        .classList.add("hidden");
-
-      document.getElementById("appArea")
-        .classList.remove("hidden");
-
-
-      try {
-
-        const userDoc =
-          await getDoc(
-            doc(db, "users", user.uid)
-          );
-
-
-        if (userDoc.exists()) {
-
-          const data = userDoc.data();
-
-          const savedLanguage =
-            data.language || "sw";
-
-          document.getElementById("languageSelect").value =
-            savedLanguage;
-
-          document.getElementById("profileLanguage").value =
-            savedLanguage;
-
-          applyLanguage(savedLanguage);
-
-        }
-
-        else {
-
-          applyLanguage("sw");
-
-        }
-
-      }
-
-      catch (error) {
-
-        applyLanguage("sw");
-
-      }
-
-
-      showChats();
-
-    }
-
-    else {
-
-      document.getElementById("authArea")
-        .classList.remove("hidden");
-
-      document.getElementById("appArea")
-        .classList.add("hidden");
-
-    }
-
-  });
-
-
-  /* =========================
-     MENU
-  ========================= */
-
-  document.getElementById("menuBtn")
-    .addEventListene
- 
+<button class="secondary" id="backGroupBtn">  
+  ← Rudi Chats  
+</button>  
+
+<p id="groupMessage"></p>
+
+  </div>    <!-- PROFILE -->    <div id="profileArea" class="container hidden">  <h2>👤 Profile</h2>  
+
+<div class="profileIcon">👤</div>  
+
+<input  
+  type="text"  
+  id="profileName"  
+  placeholder="Jina"  
+>  
+
+<textarea  
+  id="profileBio"  
+  placeholder="Andika kuhusu wewe"  
+></textarea>  
+
+<input  
+  type="text"  
+  id="profileCountry"  
+  placeholder="Nchi"  
+>  
+
+<select id="profileLanguage">  
+
+  <option value="sw">Kiswahili</option>  
+  <option value="en">English</option>  
+  <option value="fr">Français</option>  
+  <option value="es">Español</option>  
+  <option value="ar">العربية</option>  
+
+</select>  
+
+<button id="saveProfileBtn">  
+  💾 Save Profile  
+</button>  
+
+<button class="secondary" id="backProfileBtn">  
+  ← Chats  
+</button>  
+
+<p id="profileMessage"></p>
+
+  </div>    <!-- LANGUAGE -->    <div id="languageArea" class="container hidden">  <h2>🌐 Language</h2>  
+
+<select id="languageSelect">  
+
+  <option value="sw">🇹🇿 Kiswahili</option>  
+  <option value="en">🇬🇧 English</option>  
+  <option value="fr">🇫🇷 Français</option>  
+  <option value="es">🇪🇸 Español</option>  
+  <option value="ar">🇸🇦 العربية</option>  
+
+</select>  
+
+<button id="saveLanguageBtn">  
+  Save Language  
+</button>  
+
+<button class="secondary" id="backLanguageBtn">  
+  ← Chats  
+</button>
+
+  </div>    <!-- SETTINGS -->    <div id="settingsArea" class="container hidden">  <h2>⚙️ Settings</h2>  
+
+<p>Settings za Chatpoa zitaongezwa hapa.</p>  
+
+<button class="secondary" id="backSettingsBtn">  
+  ← Chats  
+</button>
+
+  </div>  </div>  <script type="module">  
+  
+  import { initializeApp }  
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";  
+  
+  import {  
+    getAuth,  
+    createUserWithEmailAndPassword,  
+    signInWithEmailAndPassword,  
+    onAuthStateChanged,  
+    signOut  
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";  
+  
+  import {  
+    getFirestore,  
+    doc,  
+    setDoc,  
+    getDoc,  
+    collection,  
+    query,  
+    where,  
+    getDocs  
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";  
+  
+  
+  const firebaseConfig = {  
+  
+    apiKey: "AIzaSyDeucp2-feD8Ml-nrBdgRyrwMQ78tZ0GAA",  
+  
+    authDomain: "chatpoa-48730.firebaseapp.com",  
+  
+    projectId: "chatpoa-48730",  
+  
+    storageBucket: "chatpoa-48730.firebasestorage.app",  
+  
+    messagingSenderId: "461917880378",  
+  
+    appId: "1:461917880378:web:9ac8f125ac6790b44fb503",  
+  
+    measurementId: "G-V55XB311DP"  
+  
+  };  
+  
+  
+  const app = initializeApp(firebaseConfig);  
+  
+  const auth = getAuth(app);  
+  
+  const db = getFirestore(app);  
+  
+  
+  const chatsArea =  
+    document.getElementById("chatsArea");  
+  
+  const privateChatArea =  
+    document.getElementById("privateChatArea");  
+  
+  const groupArea =  
+    document.getElementById("groupArea");  
+  
+  const profileArea =  
+    document.getElementById("profileArea");  
+  
+  const languageArea =  
+    document.getElementById("languageArea");  
+  
+  const settingsArea =  
+    document.getElementById("settingsArea");  
+  
+  const sideMenu =  
+    document.getElementById("sideMenu");  
+  
+  
+  function hidePages() {  
+  
+    chatsArea.classList.add("hidden");  
+    privateChatArea.classList.add("hidden");  
+    groupArea.classList.add("hidden");  
+    profileArea.classList.add("hidden");  
+    languageArea.classList.add("hidden");  
+    settingsArea.classList.add("hidden");  
+  
+  }  
+  
+  
+  function showChats() {  
+  
+    hidePages();  
+  
+    chatsArea.classList.remove("hidden");  
+  
+    sideMenu.classList.add("hidden");  
+  
+  }  
+  
+  
+  // SIGNUP  
+  
+  document.getElementById("signupBtn")  
+    .addEventListener("click", async () => {  
+  
+      const name =  
+        document.getElementById("name").value.trim();  
+  
+      const email =  
+        document.getElementById("email").value.trim();  
+  
+      const password =  
+        document.getElementById("password").value;  
+  
+  
+      if (!name || !email || !password) {  
+  
+        document.getElementById("message")  
+          .textContent =  
+          "Jaza taarifa zote.";  
+  
+        return;  
+  
+      }  
+  
+  
+      try {  
+  
+        const userCredential =  
+          await createUserWithEmailAndPassword(  
+            auth,  
+            email,  
+            password  
+          );  
+  
+  
+        await setDoc(  
+          doc(db, "users", userCredential.user.uid),  
+          {  
+            name: name,  
+            email: email,  
+            bio: "",  
+            country: "",  
+            language: "sw"  
+          }  
+        );  
+  
+  
+        document.getElementById("message")  
+          .textContent =  
+          "Umejisajili kikamilifu!";  
+  
+      }  
+  
+      catch (error) {  
+  
+        document.getElementById("message")  
+          .textContent =  
+          error.message;  
+  
+      }  
+  
+    });  
+  
+  
+  // LOGIN  
+  
+  document.getElementById("loginBtn")  
+    .addEventListener("click", async () => {  
+  
+      const email =  
+        document.getElementById("loginEmail")  
+          .value.trim();  
+  
+      const password =  
+        document.getElementById("loginPassword")  
+          .value;  
+  
+  
+      if (!email || !password) {  
+  
+        document.getElementById("message")  
+          .textContent =  
+          "Weka email na password.";  
+  
+        return;  
+  
+      }  
+  
+  
+      try {  
+  
+        await signInWithEmailAndPassword(  
+          auth,  
+          email,  
+          password  
+        );  
+  
+      }  
+  
+      catch (error) {  
+  
+        document.getElementById("message")  
+          .textContent =  
+          error.message;  
+  
+      }  
+  
+    });  
+  
+  
+  // AUTH  
+  
+  onAuthStateChanged(auth, async (user) => {  
+  
+    if (user) {  
+  
+      document.getElementById("authArea")  
+        .classList.add("hidden");  
+  
+      document.getElementById("appArea")  
+        .classList.remove("hidden");  
+  
+      showChats();  
+  
+    }  
+  
+    else {  
+  
+      document.getElementById("authArea")  
+        .classList.remove("hidden");  
+  
+      document.getElementById("appArea")  
+        .classList.add("hidden");  
+  
+    }  
+  
+  });  
+  
+  
+  // MENU  
+  
+  document.getElementById("menuBtn")  
+    .addEventListener("click", () => {  
+  
+      sideMenu.classList.toggle("hidden");  
+  
+    });  
+  
+  
+  document.getElementById("chatsMenuBtn")  
+    .addEventListener("click", showChats);  
+  
+  
+  // SEARCH USER  
+  
+  document.getElementById("searchBtn")  
+    .addEventListener("click", async () => {  
+  
+      const email =  
+        document.getElementById("searchUser")  
+          .value.trim();  
+  
+      const result =  
+        document.getElementById("searchResult");  
+  
+  
+      if (!email) {  
+  
+        result.textContent =  
+          "Andika email ya mtu.";  
+  
+        return;  
+  
+      }  
+  
+  
+      try {  
+  
+        const usersRef =  
+          collection(db, "users");  
+  
+        const q =  
+          query(  
+            usersRef,  
+            where("email", "==", email)  
+          );  
+  
+        const snapshot =  
+          await getDocs(q);  
+  
+  
+        if (snapshot.empty) {  
+  
+          result.textContent =  
+            "User hajapatikana.";  
+  
+          return;  
+  
+        }  
+  
+  
+        snapshot.forEach((userDoc) => {  
+  
+          const data = userDoc.data();  
+  
+          result.innerHTML =  
+            "👤 <b>" +  
+            data.name +  
+            "</b><br>" +  
+            data.email +  
+            "<br><br>";  
+  
+          const button =  
+            document.createElement("button");  
+  
+          button.textContent =  
+            "💬 Fungua Chat";  
+  
+          button.onclick = () => {  
+  
+            openPrivateChat(  
+              userDoc.id,  
+              data.name  
+            );  
+  
+          };  
+  
+          result.appendChild(button);  
+  
+        });  
+  
+      }  
+  
+      catch (error) {  
+  
+        result.textContent =  
+          "Kuna tatizo: " +  
+          error.message;  
+  
+      }  
+  
+    });  
+  
+  
+  // OPEN PRIVATE CHAT  
+  
+  function openPrivateChat(userId, userName) {  
+  
+    hidePages();  
+  
+    privateChatArea.classList.remove("hidden");  
+  
+    document.getElementById("privateChatTitle")  
+      .textContent =  
+      "💬 Chat na " + userName;  
+  
+  }  
+  
+  
+  document.getElementById("newChatBtn")  
+    .addEventListener("click", () => {  
+  
+      hidePages();  
+  
+      privateChatArea.classList.remove("hidden");  
+  
+      document.getElementById("privateChatTitle")  
+        .textContent =  
+        "👤 Private Chat";  
+  
+    });  
+  
+  
+  // SEND BUTTON  
+  
+  document.getElementById("sendBtn")  
+    .addEventListener("click", () => {  
+  
+      const input =  
+        document.getElementById("chatInput");  
+  
+      const text =  
+        input.value.trim();  
+  
+  
+      if (!text) return;  
+  
+  
+      document.getElementById("chatMessages")  
+        .innerHTML +=  
+        "<p><b>You:</b> " +  
+        text +  
+        "</p>";  
+  
+      input.value = "";  
+  
+    });  
+  
+  
+  // GROUP PAGE  
+  
+  document.getElementById("newGroupBtn")  
+    .addEventListener("click", () => {  
+  
+      hidePages();  
+  
+      groupArea.classList.remove("hidden");  
+  
+    });  
+  
+  
+  document.getElementById("saveGroupBtn")  
+    .addEventListener("click", () => {  
+  
+      const name =  
+        document.getElementById("groupName")  
+          .value.trim();  
+  
+      const members =  
+        document.getElementById("groupMembers")  
+          .value.trim();  
+  
+  
+      if (!name || !members) {  
+  
+        document.getElementById("groupMessage")  
+          .textContent =  
+          "Weka jina la group na members.";  
+  
+        return;  
+  
+      }  
+  
+  
+      document.getElementById("groupMessage")  
+        .textContent =  
+        "Group imeandaliwa. Tutaunganisha Firebase hatua inayofuata.";  
+  
+    });  
+  
+  
+  // BACK FROM CHAT  
+  
+  document.getElementById("backChatsBtn")  
+    .addEventListener("click", showChats);  
+  
+  
+  document.getElementById("backGroupBtn")  
+    .addEventListener("click", showChats);  
+  
+  
+  document.getElementById("backProfileBtn")  
+    .addEventListener("click", showChats);  
+  
+  
+  document.getElementById("backLanguageBtn")  
+    .addEventListener("click", showChats);  
+  
+  
+  document.getElementById("backSettingsBtn")  
+    .addEventListener("click", showChats);  
+  
+  
+  // PROFILE  
+  
+  document.getElementById("profileBtn")  
+    .addEventListener("click", async () => {  
+  
+      hidePages();  
+  
+      profileArea.classList.remove("hidden");  
+  
+      sideMenu.classList.add("hidden");  
+  
+  
+      const user = auth.currentUser;  
+  
+      if (!user) return;  
+  
+  
+      const userDoc =  
+        await getDoc(  
+          doc(db, "users", user.uid)  
+        );  
+  
+  
+      if (userDoc.exists()) {  
+  
+        const data =  
+          userDoc.data();  
+  
+        document.getElementById("profileName")  
+          .value =  
+          data.name || "";  
+  
+        document.getElementById("profileBio")  
+          .value =  
+          data.bio || "";  
+  
+        document.getElementById("profileCountry")  
+          .value =  
+          data.country || "";  
+  
+        document.getElementById("profileLanguage")  
+          .value =  
+          data.language || "sw";  
+  
+      }  
+  
+    });  
+  
+  
+  // SAVE PROFILE  
+  
+  document.getElementById("saveProfileBtn")  
+    .addEventListener("click", async () => {  
+  
+      const user = auth.currentUser;  
+  
+      if (!user) return;  
+  
+  
+      await setDoc(  
+        doc(db, "users", user.uid),  
+        {  
+          name:  
+            document.getElementById("profileName")  
+              .value.trim(),  
+  
+          bio:  
+            document.getElementById("profileBio")  
+              .value.trim(),  
+  
+          country:  
+            document.getElementById("profileCountry")  
+              .value.trim(),  
+  
+          language:  
+            document.getElementById("profileLanguage")  
+              .value  
+        },  
+        { merge: true }  
+      );  
+  
+  
+      document.getElementById("profileMessage")  
+        .textContent =  
+        "Profile imehifadhiwa!";  
+  
+    });  
+  
+  
+  // LANGUAGE  
+  
+  document.getElementById("languageBtn")  
+    .addEventListener("click", () => {  
+  
+      hidePages();  
+  
+      languageArea.classList.remove("hidden");  
+  
+      sideMenu.classList.add("hidden");  
+  
+    });  
+  
+  
+  document.getElementById("saveLanguageBtn")  
+    .addEventListener("click", async () => {  
+  
+      const user = auth.currentUser;  
+  
+      if (!user) return;  
+  
+  
+      await setDoc(  
+        doc(db, "users", user.uid),  
+        {  
+          language:  
+            document.getElementById("languageSelect")  
+              .value  
+        },  
+        { merge: true }  
+      );  
+  
+  
+      alert("Language imehifadhiwa!");  
+  
+    });  
+  
+  
+  // SETTINGS  
+  
+  document.getElementById("settingsBtn")  
+    .addEventListener("click", () => {  
+  
+      hidePages();  
+  
+      settingsArea.classList.remove("hidden");  
+  
+      sideMenu.classList.add("hidden");  
+  
+    });  
+  
+  
+  // LOGOUT  
+  
+  document.getElementById("logoutBtn")  
+    .addEventListener("click", async () => {  
+  
+      await signOut(auth);  
+  
+    });  
+  
+</script>  </body>  
+</html>
