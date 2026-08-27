@@ -241,10 +241,80 @@ button{
  margin-top:8px;
 }
 
+/* LIKE & COMMENT */
+
+.statusActions{
+ display:flex;
+ gap:8px;
+ margin-top:12px;
+}
+
+.statusActions button{
+ flex:1;
+ margin:0;
+ background:#292929;
+ color:white;
+ border:1px solid #444;
+}
+
+.statusActions button.liked{
+ background:#1877f2;
+ color:white;
+}
+
+.commentBox{
+ display:flex;
+ gap:5px;
+ margin-top:10px;
+}
+
+.commentBox input{
+ flex:1;
+ margin:0;
+ background:white;
+ color:#222;
+}
+
+.commentBox button{
+ width:80px;
+ margin:0;
+}
+
+.comments{
+ margin-top:10px;
+ text-align:left;
+}
+
+.comment{
+ background:#292929;
+ border-radius:10px;
+ padding:8px 10px;
+ margin-top:6px;
+}
+
+.commentName{
+ font-weight:bold;
+ font-size:13px;
+ color:#ddd;
+}
+
+.commentText{
+ font-size:14px;
+ margin-top:3px;
+ word-wrap:break-word;
+}
+
+.commentCount{
+ color:#bbb;
+ font-size:12px;
+ margin-top:5px;
+}
+
 .statusDelete{
  width:auto;
  background:#d93025;
  padding:8px 15px;
+ margin-top:10px;
 }
 
 /* STATUS VIEWER */
@@ -376,8 +446,6 @@ button{
 
 <body>
 
-<!-- LOGIN / SIGNUP -->
-
 <div id="authArea" class="container">
 
 <h1>Karibu Chatpoa 👋</h1>
@@ -404,20 +472,13 @@ button{
 </div>
 
 
-<!-- APP -->
-
 <div id="appArea" class="hidden">
 
 <div class="topbar">
-
 <h2>Chatpoa</h2>
-
 <span id="menuBtn" class="menuBtn">⋮</span>
-
 </div>
 
-
-<!-- CHATS -->
 
 <div id="chatsArea" class="container">
 
@@ -429,11 +490,7 @@ button{
 
 <div class="searchBox">
 
-<input
- id="searchUser"
- type="text"
- placeholder="🔍 Tafuta kwa email..."
->
+<input id="searchUser" type="text" placeholder="🔍 Tafuta kwa email...">
 
 <button id="searchBtn">Tafuta</button>
 
@@ -452,8 +509,6 @@ button{
 </div>
 
 
-<!-- STATUS -->
-
 <div id="statusArea" class="container hidden">
 
 <h2>📸 Status</h2>
@@ -462,11 +517,9 @@ button{
 
 <h3>📝 Andika Status</h3>
 
-<textarea
- id="statusText"
- maxlength="500"
- placeholder="Andika status yako..."
-></textarea>
+<textarea id="statusText"
+maxlength="500"
+placeholder="Andika status yako..."></textarea>
 
 <button id="postTextStatusBtn">
 📝 Post Status
@@ -474,11 +527,7 @@ button{
 
 <h3>📷 Weka Picha</h3>
 
-<input
- id="statusImage"
- type="file"
- accept="image/*"
->
+<input id="statusImage" type="file" accept="image/*">
 
 <button id="postImageStatusBtn">
 📷 Post Picha
@@ -492,8 +541,6 @@ button{
 
 </div>
 
-
-<!-- GROUPS -->
 
 <div id="groupsArea" class="container hidden">
 
@@ -510,28 +557,20 @@ button{
 </div>
 
 
-<!-- CREATE GROUP -->
-
 <div id="groupArea" class="container hidden">
 
 <h2>👥 Tengeneza Group</h2>
 
-<input
- id="groupName"
- type="text"
- placeholder="Jina la group"
->
+<input id="groupName"
+type="text"
+placeholder="Jina la group">
 
-<textarea
- id="groupDescription"
- placeholder="Maelezo ya group"
-></textarea>
+<textarea id="groupDescription"
+placeholder="Maelezo ya group"></textarea>
 
-<input
- id="groupMembers"
- type="text"
- placeholder="Emails za members, tenga kwa comma"
->
+<input id="groupMembers"
+type="text"
+placeholder="Emails za members, tenga kwa comma">
 
 <button id="saveGroupBtn">
 Tengeneza Group
@@ -546,19 +585,15 @@ Tengeneza Group
 </div>
 
 
-<!-- PRIVATE CHAT -->
-
 <div id="privateChatArea" class="container hidden">
 
 <h2 id="privateChatTitle">💬 Chat</h2>
 
 <div id="chatMessages"></div>
 
-<input
- id="chatInput"
- type="text"
- placeholder="Andika ujumbe..."
->
+<input id="chatInput"
+type="text"
+placeholder="Andika ujumbe...">
 
 <button id="sendBtn">Tuma</button>
 
@@ -571,8 +606,6 @@ Tengeneza Group
 </div>
 
 
-<!-- PROFILE -->
-
 <div id="profileArea" class="container hidden">
 
 <h2>👤 Profile</h2>
@@ -581,16 +614,12 @@ Tengeneza Group
 
 <input id="profileName" type="text" placeholder="Jina">
 
-<textarea
- id="profileBio"
- placeholder="Kuhusu wewe"
-></textarea>
+<textarea id="profileBio"
+placeholder="Kuhusu wewe"></textarea>
 
-<input
- id="profileCountry"
- type="text"
- placeholder="Nchi"
->
+<input id="profileCountry"
+type="text"
+placeholder="Nchi">
 
 <select id="profileLanguage">
 
@@ -614,8 +643,6 @@ Tengeneza Group
 
 </div>
 
-
-<!-- LANGUAGE -->
 
 <div id="languageArea" class="container hidden">
 
@@ -642,8 +669,6 @@ Tengeneza Group
 </div>
 
 
-<!-- PRIVACY -->
-
 <div id="privacyArea" class="container hidden">
 
 <h2>🔒 Privacy</h2>
@@ -656,16 +681,13 @@ Tengeneza Group
 
 <span>Onyesha Last Seen</span>
 
-<input
- id="lastSeenSetting"
- type="checkbox"
- checked
->
+<input id="lastSeenSetting"
+type="checkbox"
+checked>
 
 </div>
 
 </div>
-
 
 <div class="settingItem">
 
@@ -681,7 +703,6 @@ Tengeneza Group
 
 </div>
 
-
 <div class="settingItem">
 
 <strong>👤 Profile Privacy</strong>
@@ -696,7 +717,6 @@ Tengeneza Group
 
 </div>
 
-
 <button id="savePrivacyBtn">
 💾 Hifadhi Privacy
 </button>
@@ -710,12 +730,9 @@ Tengeneza Group
 </div>
 
 
-<!-- SETTINGS -->
-
 <div id="settingsArea" class="container hidden">
 
 <h2>⚙️ Settings</h2>
-
 
 <button class="settingButton" id="settingsProfileBtn">
 👤 Profile
@@ -729,7 +746,6 @@ Tengeneza Group
 🔒 Privacy
 </button>
 
-
 <div class="settingItem">
 
 <strong>🔔 Notifications</strong>
@@ -738,16 +754,13 @@ Tengeneza Group
 
 <span>Ruhusu notifications</span>
 
-<input
- id="notificationSetting"
- type="checkbox"
- checked
->
+<input id="notificationSetting"
+type="checkbox"
+checked>
 
 </div>
 
 </div>
-
 
 <div class="settingItem">
 
@@ -762,7 +775,6 @@ Tengeneza Group
 
 </div>
 
-
 <div class="settingItem">
 
 <strong>📱 Akaunti</strong>
@@ -774,23 +786,18 @@ Email:
 
 </div>
 
-
 <button id="saveSettingsBtn">
 💾 Hifadhi Settings
 </button>
-
 
 <button class="danger" id="logoutBtn">
 🚪 Logout
 </button>
 
-
 <p id="settingsMessage"></p>
 
 </div>
 
-
-<!-- BOTTOM NAV -->
 
 <div class="bottomNav">
 
@@ -819,8 +826,6 @@ Settings
 </div>
 
 
-<!-- STATUS VIEWER -->
-
 <div id="statusViewer" class="statusViewer hidden">
 
 <div class="statusViewerHeader">
@@ -841,37 +846,37 @@ Settings
 <script type="module">
 
 import {
- initializeApp
+initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-
 import {
- getAuth,
- createUserWithEmailAndPassword,
- signInWithEmailAndPassword,
- onAuthStateChanged,
- signOut
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
 import {
- getFirestore,
- doc,
- setDoc,
- getDoc,
- collection,
- query,
- where,
- getDocs,
- addDoc,
- onSnapshot,
- serverTimestamp,
- orderBy,
- deleteDoc
+getFirestore,
+doc,
+setDoc,
+getDoc,
+collection,
+query,
+where,
+getDocs,
+addDoc,
+onSnapshot,
+serverTimestamp,
+orderBy,
+deleteDoc,
+arrayUnion,
+arrayRemove
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -910,38 +915,17 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 
 
-const authArea=
-document.getElementById("authArea");
-
-const appArea=
-document.getElementById("appArea");
-
-const chatsArea=
-document.getElementById("chatsArea");
-
-const statusArea=
-document.getElementById("statusArea");
-
-const groupsArea=
-document.getElementById("groupsArea");
-
-const groupArea=
-document.getElementById("groupArea");
-
-const privateChatArea=
-document.getElementById("privateChatArea");
-
-const profileArea=
-document.getElementById("profileArea");
-
-const languageArea=
-document.getElementById("languageArea");
-
-const privacyArea=
-document.getElementById("privacyArea");
-
-const settingsArea=
-document.getElementById("settingsArea");
+const authArea=document.getElementById("authArea");
+const appArea=document.getElementById("appArea");
+const chatsArea=document.getElementById("chatsArea");
+const statusArea=document.getElementById("statusArea");
+const groupsArea=document.getElementById("groupsArea");
+const groupArea=document.getElementById("groupArea");
+const privateChatArea=document.getElementById("privateChatArea");
+const profileArea=document.getElementById("profileArea");
+const languageArea=document.getElementById("languageArea");
+const privacyArea=document.getElementById("privacyArea");
+const settingsArea=document.getElementById("settingsArea");
 
 
 let currentChatUserId=null;
@@ -959,15 +943,15 @@ let unsubscribeStatuses=null;
 function hidePages(){
 
 [
- chatsArea,
- statusArea,
- groupsArea,
- groupArea,
- privateChatArea,
- profileArea,
- languageArea,
- privacyArea,
- settingsArea
+chatsArea,
+statusArea,
+groupsArea,
+groupArea,
+privateChatArea,
+profileArea,
+languageArea,
+privacyArea,
+settingsArea
 ].forEach(x=>x.classList.add("hidden"));
 
 }
@@ -1054,7 +1038,6 @@ document.getElementById("email").value.trim().toLowerCase();
 const password=
 document.getElementById("password").value;
 
-
 if(!name||!email||!password){
 
 document.getElementById("message").textContent=
@@ -1063,7 +1046,6 @@ document.getElementById("message").textContent=
 return;
 
 }
-
 
 if(password.length<6){
 
@@ -1074,7 +1056,6 @@ return;
 
 }
 
-
 try{
 
 const result=
@@ -1083,7 +1064,6 @@ auth,
 email,
 password
 );
-
 
 await setDoc(
 doc(db,"users",result.user.uid),
@@ -1103,7 +1083,6 @@ createdAt:serverTimestamp()
 
 }
 );
-
 
 document.getElementById("message").textContent=
 "Umejisajili kikamilifu.";
@@ -1132,7 +1111,6 @@ document.getElementById("loginEmail").value.trim().toLowerCase();
 const password=
 document.getElementById("loginPassword").value;
 
-
 if(!email||!password){
 
 document.getElementById("message").textContent=
@@ -1141,7 +1119,6 @@ document.getElementById("message").textContent=
 return;
 
 }
-
 
 try{
 
@@ -1182,9 +1159,7 @@ await loadSettings();
 
 showChats();
 
-}
-
-else{
+}else{
 
 authArea.classList.remove("hidden");
 
@@ -1243,7 +1218,6 @@ document.getElementById("searchResult");
 
 const user=auth.currentUser;
 
-
 if(!email){
 
 result.textContent="Andika email.";
@@ -1252,7 +1226,6 @@ return;
 
 }
 
-
 if(!user){
 
 result.textContent="Login kwanza.";
@@ -1260,7 +1233,6 @@ result.textContent="Login kwanza.";
 return;
 
 }
-
 
 if(email===user.email){
 
@@ -1271,7 +1243,6 @@ return;
 
 }
 
-
 try{
 
 const q=query(
@@ -1281,7 +1252,6 @@ where("email","==",email)
 
 const snap=await getDocs(q);
 
-
 if(snap.empty){
 
 result.textContent="User hajapatikana.";
@@ -1290,9 +1260,7 @@ return;
 
 }
 
-
 result.innerHTML="";
-
 
 snap.forEach(userDoc=>{
 
@@ -1346,9 +1314,6 @@ privateChatArea.classList.remove("hidden");
 
 setActiveNav("navChats");
 
-document.getElementById("privateChatTitle").textContent=
-"💬 Chat na "+userName;
-
 loadMessages();
 
 }
@@ -1366,18 +1331,15 @@ unsubscribeReceived();
 unsubscribeReceived=null;
 }
 
-
 const user=auth.currentUser;
 
 if(!user||!currentChatUserId)return;
-
 
 const area=
 document.getElementById("chatMessages");
 
 let sent=[];
 let received=[];
-
 
 function display(){
 
@@ -1389,7 +1351,6 @@ all.sort((a,b)=>
 
 area.innerHTML="";
 
-
 if(!all.length){
 
 area.innerHTML="<p>Hakuna ujumbe bado.</p>";
@@ -1397,7 +1358,6 @@ area.innerHTML="<p>Hakuna ujumbe bado.</p>";
 return;
 
 }
-
 
 all.forEach(message=>{
 
@@ -1472,9 +1432,7 @@ document.getElementById("chatInput");
 
 const text=input.value.trim();
 
-
 if(!user||!currentChatUserId||!text)return;
-
 
 try{
 
@@ -1528,10 +1486,8 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 const area=
 document.getElementById("privateChats");
-
 
 const sentQ=query(
 collection(db,"messages"),
@@ -1543,17 +1499,14 @@ collection(db,"messages"),
 where("receiverId","==",user.uid)
 );
 
-
 let sent=[];
 let received=[];
-
 
 function update(){
 
 const all=[...sent,...received];
 
 const conversations={};
-
 
 all.forEach(m=>{
 
@@ -1574,11 +1527,9 @@ conversations[other]=m;
 
 });
 
-
 area.innerHTML="";
 
 const ids=Object.keys(conversations);
-
 
 if(!ids.length){
 
@@ -1589,11 +1540,9 @@ return;
 
 }
 
-
 ids.forEach(async id=>{
 
 let name="Chatpoa User";
-
 
 try{
 
@@ -1608,7 +1557,6 @@ name=snap.data().name||name;
 }
 
 }catch(e){}
-
 
 const card=document.createElement("div");
 
@@ -1696,10 +1644,8 @@ document.getElementById("groupMembers").value
 .map(x=>x.trim().toLowerCase())
 .filter(Boolean);
 
-
 const message=
 document.getElementById("groupMessage");
-
 
 if(!user){
 
@@ -1709,7 +1655,6 @@ return;
 
 }
 
-
 if(!name){
 
 message.textContent="Weka jina la group.";
@@ -1718,9 +1663,7 @@ return;
 
 }
 
-
 let members=[user.uid];
-
 
 for(const email of emails){
 
@@ -1747,7 +1690,6 @@ members.push(d.id);
 
 }
 
-
 try{
 
 await addDoc(
@@ -1762,7 +1704,6 @@ createdAt:serverTimestamp()
 
 }
 );
-
 
 message.textContent="Group imetengenezwa.";
 
@@ -1789,16 +1730,13 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 const area=
 document.getElementById("groupChats");
-
 
 const q=query(
 collection(db,"groups"),
 where("members","array-contains",user.uid)
 );
-
 
 if(unsubscribeGroups){
 
@@ -1806,12 +1744,10 @@ unsubscribeGroups();
 
 }
 
-
 unsubscribeGroups=
 onSnapshot(q,snap=>{
 
 area.innerHTML="";
-
 
 if(snap.empty){
 
@@ -1821,7 +1757,6 @@ area.innerHTML=
 return;
 
 }
-
 
 snap.docs.forEach(d=>{
 
@@ -1856,16 +1791,13 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 const snap=await getDoc(
 doc(db,"users",user.uid)
 );
 
 if(!snap.exists())return;
 
-
 const data=snap.data();
-
 
 document.getElementById("profileName").value=
 data.name||"";
@@ -1890,7 +1822,6 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 try{
 
 await setDoc(
@@ -1908,7 +1839,6 @@ language:document.getElementById("profileLanguage").value
 },
 {merge:true}
 );
-
 
 document.getElementById("profileMessage").textContent=
 "Profile imehifadhiwa.";
@@ -1933,16 +1863,13 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 const snap=await getDoc(
 doc(db,"users",user.uid)
 );
 
 if(!snap.exists())return;
 
-
 const data=snap.data();
-
 
 document.getElementById("lastSeenSetting").checked=
 data.lastSeen!==false;
@@ -1964,7 +1891,6 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 try{
 
 await setDoc(
@@ -1983,7 +1909,6 @@ document.getElementById("profilePrivacy").value
 },
 {merge:true}
 );
-
 
 document.getElementById("privacyMessage").textContent=
 "Privacy imehifadhiwa.";
@@ -2008,10 +1933,8 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 document.getElementById("settingsEmail").textContent=
 user.email||"-";
-
 
 const snap=await getDoc(
 doc(db,"users",user.uid)
@@ -2019,16 +1942,13 @@ doc(db,"users",user.uid)
 
 if(!snap.exists())return;
 
-
 const data=snap.data();
-
 
 document.getElementById("notificationSetting").checked=
 data.notifications!==false;
 
 document.getElementById("appearanceSetting").value=
 data.appearance||"light";
-
 
 applyAppearance(
 data.appearance||"light"
@@ -2060,13 +1980,11 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 const appearance=
 document.getElementById("appearanceSetting").value;
 
 const notifications=
 document.getElementById("notificationSetting").checked;
-
 
 try{
 
@@ -2080,7 +1998,6 @@ notifications:notifications
 },
 {merge:true}
 );
-
 
 applyAppearance(appearance);
 
@@ -2109,7 +2026,6 @@ const user=auth.currentUser;
 
 if(!user)return;
 
-
 try{
 
 await setDoc(
@@ -2136,7 +2052,10 @@ alert(error.message);
 });
 
 
-/* STATUS */
+/* =========================================================
+   STATUS SYSTEM
+========================================================= */
+
 
 function loadStatuses(){
 
@@ -2153,7 +2072,6 @@ document.getElementById("allStatuses");
 const bar=
 document.getElementById("statusBar");
 
-
 if(unsubscribeStatuses){
 
 unsubscribeStatuses();
@@ -2162,12 +2080,10 @@ unsubscribeStatuses=null;
 
 }
 
-
 const q=query(
 collection(db,"statuses"),
 orderBy("clientTime","desc")
 );
-
 
 unsubscribeStatuses=
 onSnapshot(q,snap=>{
@@ -2183,7 +2099,6 @@ id:d.id,
 .filter(x=>
 (x.expiresAt||0)>now
 );
-
 
 bar.innerHTML="";
 
@@ -2241,19 +2156,15 @@ list.sort(
 (b.clientTime||0)-(a.clientTime||0)
 );
 
-
 const latest=list[0];
-
 
 const item=document.createElement("div");
 
 item.className="statusItem";
 
-
 const circle=document.createElement("div");
 
 circle.className="statusCircle";
-
 
 if(latest.type==="image"&&latest.imageData){
 
@@ -2269,7 +2180,6 @@ circle.textContent="📝";
 
 }
 
-
 const name=document.createElement("div");
 
 name.className="statusName";
@@ -2277,11 +2187,9 @@ name.className="statusName";
 name.textContent=
 latest.userName||"User";
 
-
 item.appendChild(circle);
 
 item.appendChild(name);
-
 
 item.onclick=()=>{
 
@@ -2292,7 +2200,6 @@ list
 
 };
 
-
 bar.appendChild(item);
 
 });
@@ -2302,7 +2209,6 @@ bar.appendChild(item);
 
 area.innerHTML="";
 
-
 if(!statuses.length){
 
 area.innerHTML=
@@ -2311,7 +2217,6 @@ area.innerHTML=
 return;
 
 }
-
 
 statuses.forEach(status=>{
 
@@ -2345,6 +2250,8 @@ title.innerHTML=
 card.appendChild(title);
 
 
+/* CONTENT */
+
 if(status.type==="image"){
 
 const img=document.createElement("img");
@@ -2366,6 +2273,8 @@ card.appendChild(text);
 }
 
 
+/* TIME */
+
 const meta=document.createElement("div");
 
 meta.className="statusMeta";
@@ -2376,8 +2285,16 @@ meta.textContent=
 card.appendChild(meta);
 
 
-const user=auth.currentUser;
+/* ACTIONS */
 
+card.appendChild(
+createStatusActions(status)
+);
+
+
+/* DELETE */
+
+const user=auth.currentUser;
 
 if(user&&status.userId===user.uid){
 
@@ -2386,7 +2303,6 @@ const del=document.createElement("button");
 del.className="statusDelete";
 
 del.textContent="🗑️ Futa Status";
-
 
 del.onclick=async()=>{
 
@@ -2404,13 +2320,306 @@ alert(error.message);
 
 };
 
-
 card.appendChild(del);
 
 }
 
-
 return card;
+
+}
+
+
+/* =========================================================
+   LIKE + COMMENT
+========================================================= */
+
+function createStatusActions(status){
+
+const wrapper=document.createElement("div");
+
+wrapper.className="statusActions";
+
+
+const user=auth.currentUser;
+
+const likes=Array.isArray(status.likes)
+?status.likes
+:[];
+
+
+const likeBtn=document.createElement("button");
+
+const liked=user&&likes.includes(user.uid);
+
+likeBtn.className=liked?"liked":"";
+
+likeBtn.textContent=
+liked
+?`❤️ Liked (${likes.length})`
+:`🤍 Like (${likes.length})`;
+
+
+likeBtn.onclick=async()=>{
+
+if(!user){
+
+alert("Login kwanza.");
+
+return;
+
+}
+
+try{
+
+if(likes.includes(user.uid)){
+
+await setDoc(
+doc(db,"statuses",status.id),
+{
+
+likes:arrayRemove(user.uid)
+
+},
+{merge:true}
+);
+
+}else{
+
+await setDoc(
+doc(db,"statuses",status.id),
+{
+
+likes:arrayUnion(user.uid)
+
+},
+{merge:true}
+);
+
+}
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
+
+
+wrapper.appendChild(likeBtn);
+
+
+/* COMMENT BUTTON */
+
+const commentBtn=document.createElement("button");
+
+commentBtn.textContent=
+`💬 Comment`;
+
+
+commentBtn.onclick=()=>{
+
+const box=
+document.getElementById(
+"commentInput-"+status.id
+);
+
+if(box){
+
+box.focus();
+
+}
+
+};
+
+
+wrapper.appendChild(commentBtn);
+
+
+return wrapper;
+
+}
+
+
+/* =========================================================
+   COMMENTS
+========================================================= */
+
+function createCommentSection(status){
+
+const wrapper=document.createElement("div");
+
+wrapper.className="comments";
+
+
+const inputBox=document.createElement("div");
+
+inputBox.className="commentBox";
+
+
+const input=document.createElement("input");
+
+input.id="commentInput-"+status.id;
+
+input.placeholder=
+"💬 Andika comment...";
+
+
+const send=document.createElement("button");
+
+send.textContent="Tuma";
+
+
+send.onclick=async()=>{
+
+const user=auth.currentUser;
+
+const text=input.value.trim();
+
+if(!user){
+
+alert("Login kwanza.");
+
+return;
+
+}
+
+if(!text){
+
+return;
+
+}
+
+try{
+
+const userSnap=
+await getDoc(
+doc(db,"users",user.uid)
+);
+
+const userData=
+userSnap.exists()
+?userSnap.data()
+:{};
+
+await addDoc(
+collection(
+db,
+"statuses",
+status.id,
+"comments"
+),
+{
+
+userId:user.uid,
+userName:userData.name||"User",
+text:text,
+clientTime:Date.now(),
+createdAt:serverTimestamp()
+
+}
+);
+
+input.value="";
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
+
+
+input.addEventListener("keydown",e=>{
+
+if(e.key==="Enter"){
+
+e.preventDefault();
+
+send.click();
+
+}
+
+});
+
+
+inputBox.appendChild(input);
+inputBox.appendChild(send);
+
+wrapper.appendChild(inputBox);
+
+
+/* COMMENTS LIST */
+
+const list=document.createElement("div");
+
+list.className="comments";
+
+wrapper.appendChild(list);
+
+
+const commentsQ=query(
+collection(
+db,
+"statuses",
+status.id,
+"comments"
+),
+orderBy("clientTime","asc")
+);
+
+
+onSnapshot(commentsQ,snap=>{
+
+list.innerHTML="";
+
+if(snap.empty){
+
+return;
+
+}
+
+snap.docs.forEach(commentDoc=>{
+
+const comment=commentDoc.data();
+
+const div=document.createElement("div");
+
+div.className="comment";
+
+div.innerHTML=
+`
+<div class="commentName">
+👤 ${comment.userName||"User"}
+</div>
+
+<div class="commentText">
+${escapeHTML(comment.text||"")}
+</div>
+`;
+
+list.appendChild(div);
+
+});
+
+});
+
+
+return wrapper;
+
+}
+
+
+/* SAFE HTML */
+
+function escapeHTML(text){
+
+const div=document.createElement("div");
+
+div.textContent=text;
+
+return div.innerHTML;
 
 }
 
@@ -2433,7 +2642,8 @@ area.innerHTML="";
 
 
 const validStatuses=list.filter(
-status=>(status.expiresAt||0)>Date.now()
+status=>
+(status.expiresAt||0)>Date.now()
 );
 
 
@@ -2504,12 +2714,25 @@ time.textContent=
 card.appendChild(time);
 
 
+/* LIKE */
+
+card.appendChild(
+createStatusActions(status)
+);
+
+
+/* COMMENT */
+
+card.appendChild(
+createCommentSection(status)
+);
+
+
 area.appendChild(card);
 
 });
 
 }
-
 
 viewer.classList.remove("hidden");
 
@@ -2544,7 +2767,6 @@ document.getElementById("statusText")
 const message=
 document.getElementById("statusMessage");
 
-
 if(!user){
 
 message.textContent="Login kwanza.";
@@ -2553,7 +2775,6 @@ return;
 
 }
 
-
 if(!text){
 
 message.textContent="Andika status kwanza.";
@@ -2561,7 +2782,6 @@ message.textContent="Andika status kwanza.";
 return;
 
 }
-
 
 try{
 
@@ -2584,6 +2804,7 @@ userId:user.uid,
 userName:name,
 type:"text",
 text:text,
+likes:[],
 clientTime:Date.now(),
 createdAt:serverTimestamp(),
 expiresAt:Date.now()+86400000
@@ -2632,7 +2853,6 @@ return;
 
 }
 
-
 if(!file){
 
 message.textContent="Chagua picha kwanza.";
@@ -2641,7 +2861,6 @@ return;
 
 }
 
-
 if(!file.type.startsWith("image/")){
 
 message.textContent="Chagua picha.";
@@ -2649,7 +2868,6 @@ message.textContent="Chagua picha.";
 return;
 
 }
-
 
 try{
 
@@ -2684,6 +2902,7 @@ userId:user.uid,
 userName:name,
 type:"image",
 imageData:imageData,
+likes:[],
 clientTime:Date.now(),
 createdAt:serverTimestamp(),
 expiresAt:Date.now()+86400000
@@ -2719,11 +2938,9 @@ return new Promise((resolve,reject)=>{
 
 const reader=new FileReader();
 
-
 reader.onload=e=>{
 
 const img=new Image();
-
 
 img.onload=()=>{
 
@@ -2731,7 +2948,6 @@ let width=img.width;
 let height=img.height;
 
 const max=900;
-
 
 if(width>max||height>max){
 
@@ -2753,13 +2969,11 @@ height=max;
 
 }
 
-
 const canvas=
 document.createElement("canvas");
 
 canvas.width=width;
 canvas.height=height;
-
 
 const ctx=
 canvas.getContext("2d");
@@ -2772,7 +2986,6 @@ width,
 height
 );
 
-
 let quality=.75;
 
 let data=
@@ -2780,7 +2993,6 @@ canvas.toDataURL(
 "image/jpeg",
 quality
 );
-
 
 while(
 data.length>700000 &&
@@ -2797,7 +3009,6 @@ quality
 
 }
 
-
 if(data.length>900000){
 
 reject(
@@ -2810,11 +3021,9 @@ return;
 
 }
 
-
 resolve(data);
 
 };
-
 
 img.onerror=()=>reject(
 new Error("Picha haijasomeka.")
@@ -2823,7 +3032,6 @@ new Error("Picha haijasomeka.")
 img.src=e.target.result;
 
 };
-
 
 reader.onerror=()=>reject(
 new Error("Imeshindwa kusoma picha.")
