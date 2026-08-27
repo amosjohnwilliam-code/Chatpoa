@@ -2,14 +2,14 @@
 <html lang="sw">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chatpoa</title>
 
 <style>
 *{box-sizing:border-box}
 body{
  margin:0;font-family:Arial,sans-serif;background:#f2f5f7;color:#222;
- padding-bottom:70px
+ padding-bottom:70px;
 }
 .hidden{display:none!important}
 .topbar{
@@ -26,12 +26,17 @@ input,textarea,select,button{
  width:100%;padding:12px;margin:6px 0;border-radius:8px;
  border:1px solid #ccc;font-size:15px
 }
-button{background:#1877f2;color:white;border:0;font-weight:bold;cursor:pointer}
+button{
+ background:#1877f2;color:white;border:0;font-weight:bold;cursor:pointer
+}
 .secondary{background:#555}
 .danger{background:#d93025}
 .searchBox{display:flex;gap:5px}
-.searchBox input{flex:1}.searchBox button{width:90px}
-.sectionTitle{margin-top:22px;border-bottom:1px solid #ddd;padding-bottom:8px}
+.searchBox input{flex:1}
+.searchBox button{width:90px}
+.sectionTitle{
+ margin-top:22px;border-bottom:1px solid #ddd;padding-bottom:8px
+}
 .chatCard{
  padding:14px;margin:8px 0;background:#f5f7f9;border-radius:10px;cursor:pointer
 }
@@ -75,8 +80,8 @@ button{background:#1877f2;color:white;border:0;font-weight:bold;cursor:pointer}
  text-overflow:ellipsis
 }
 .statusCard{
- background:#111;color:white;border-radius:15px;padding:15px;margin:10px 0;
- text-align:center
+ background:#111;color:white;border-radius:15px;padding:15px;
+ margin:10px 0;text-align:center
 }
 .statusCard img{
  width:100%;max-height:450px;object-fit:contain;border-radius:12px
@@ -85,33 +90,45 @@ button{background:#1877f2;color:white;border:0;font-weight:bold;cursor:pointer}
  font-size:24px;padding:35px 10px;word-wrap:break-word
 }
 .statusMeta{color:#ccc;font-size:12px;margin-top:8px}
+.statusDelete{width:auto;background:#d93025;padding:8px 15px}
+
 .statusActions{
- display:flex;gap:8px;margin-top:12px
+ display:flex;
+ gap:8px;
+ margin-top:12px;
 }
 .statusActions button{
- width:auto;flex:1;background:#292929;color:white
+ width:50%;
+ margin:0;
+ background:#292929;
+ color:white;
+ border:1px solid #555;
 }
-.likeBtn.liked{color:#ff3040}
-.commentBox{
- display:flex;gap:5px;margin-top:8px
+.statusActions button.liked{
+ background:#1877f2;
 }
-.commentBox input{margin:0;flex:1}
-.commentBox button{width:80px;margin:0}
-.comments{
- text-align:left;margin-top:10px;background:#1d1d1d;border-radius:10px;padding:8px
+.commentsBox{
+ margin-top:10px;
+ background:#181818;
+ padding:10px;
+ border-radius:10px;
+ text-align:left;
 }
 .comment{
- background:#292929;border-radius:8px;padding:7px;margin:5px 0;font-size:13px
+ background:#292929;
+ padding:8px;
+ border-radius:8px;
+ margin:5px 0;
 }
-.comment strong{display:block;color:#65a7ff}
-.statusDelete{width:auto;background:#d93025;padding:8px 15px}
+.comment small{color:#aaa}
+
 .statusViewer{
  position:fixed;inset:0;background:#111;color:white;z-index:500;
  overflow-y:auto;padding:20px
 }
 .statusViewerHeader{
- display:flex;align-items:center;justify-content:space-between;gap:10px;
- margin-bottom:15px
+ display:flex;align-items:center;justify-content:space-between;
+ gap:10px;margin-bottom:15px
 }
 .statusViewerHeader h2{margin:0;font-size:20px}
 .statusViewerHeader button{
@@ -128,47 +145,65 @@ button{background:#1877f2;color:white;border:0;font-weight:bold;cursor:pointer}
  font-size:26px;line-height:1.4;padding:50px 15px;word-wrap:break-word
 }
 .viewerTime{color:#aaa;font-size:12px;margin-top:10px}
+
 .settingItem{padding:15px 5px;border-bottom:1px solid #eee}
 .settingItem strong{display:block;margin-bottom:7px}
 .settingButton{
  background:white;color:#222;text-align:left;border-bottom:1px solid #eee
 }
-.switch{display:flex;align-items:center;justify-content:space-between}
+.switch{
+ display:flex;align-items:center;justify-content:space-between
+}
 .switch input{width:auto}
+
 #message,#profileMessage,#groupMessage,#privateMessage,
-#statusMessage,#privacyMessage,#settingsMessage{text-align:center;font-weight:bold}
+#statusMessage,#privacyMessage,#settingsMessage{
+ text-align:center;font-weight:bold
+}
+
 .darkMode{background:#111!important;color:#eee!important}
-.darkMode .container,.darkMode .bottomNav,.darkMode .settingButton{
+.darkMode .container,
+.darkMode .bottomNav,
+.darkMode .settingButton{
  background:#1e1e1e!important;color:#eee!important
 }
 .darkMode .chatCard{background:#292929;color:white}
 .darkMode input,.darkMode textarea,.darkMode select{
  background:#292929;color:white;border-color:#555
 }
+.darkMode .statusCard{background:#080808}
 </style>
 </head>
 
 <body>
 
+<!-- AUTH -->
 <div id="authArea" class="container">
+
 <h1 data-i18n="welcome">Karibu Chatpoa 👋</h1>
 
 <h2 data-i18n="signup">Jisajili</h2>
+
 <input id="name" type="text" placeholder="Jina lako" data-placeholder="name">
 <input id="email" type="email" placeholder="Email">
 <input id="password" type="password" placeholder="Password">
+
 <button id="signupBtn" data-i18n="signup">Jisajili</button>
 
 <hr>
 
 <h2 data-i18n="login">Login</h2>
+
 <input id="loginEmail" type="email" placeholder="Email">
 <input id="loginPassword" type="password" placeholder="Password">
+
 <button id="loginBtn" data-i18n="login">Login</button>
+
 <p id="message"></p>
 </div>
 
 
+<!-- APP -->
 <div id="appArea" class="hidden">
 
 <div class="topbar">
@@ -177,16 +212,18 @@ button{background:#1877f2;color:white;border:0;font-weight:bold;cursor:pointer}
 </div>
 
 
+<!-- CHATS -->
 <div id="chatsArea" class="container">
 
 <h2 data-i18n="chats">💬 Chats</h2>
 
 <h3 class="sectionTitle" data-i18n="status">📸 Status</h3>
+
 <div id="statusBar" class="statusBar"></div>
 
 <div class="searchBox">
 <input id="searchUser" type="text"
-placeholder="🔍 Tafuta kwa email"
+placeholder="🔍 Tafuta kwa email..."
 data-placeholder="searchEmail">
 <button id="searchBtn" data-i18n="search">Tafuta</button>
 </div>
@@ -196,17 +233,19 @@ data-placeholder="searchEmail">
 <h3 class="sectionTitle" data-i18n="privateChats">👤 Private Chats</h3>
 
 <div id="privateChats">
-<div class="chatCard" data-i18n="noPrivate">Hakuna private chat bado.</div>
+<div class="chatCard" data-i18n="noChats">Hakuna private chat bado.</div>
 </div>
 
 <button id="newChatBtn" data-i18n="newChat">➕ New Chat</button>
 </div>
 
 
+<!-- STATUS -->
 <div id="statusArea" class="container hidden">
 
 <h2 data-i18n="status">📸 Status</h2>
-<p data-i18n="statusExpires">Status hupotea baada ya saa 24.</p>
+
+<p data-i18n="status24">Status hupotea baada ya saa 24.</p>
 
 <h3 data-i18n="writeStatus">📝 Andika Status</h3>
 
@@ -218,7 +257,7 @@ data-placeholder="writeStatusPlaceholder"></textarea>
 📝 Post Status
 </button>
 
-<h3 data-i18n="uploadPhoto">📷 Weka Picha</h3>
+<h3 data-i18n="putPhoto">📷 Weka Picha</h3>
 
 <input id="statusImage" type="file" accept="image/*">
 
@@ -229,11 +268,12 @@ data-placeholder="writeStatusPlaceholder"></textarea>
 <p id="statusMessage"></p>
 
 <h3 class="sectionTitle" data-i18n="allStatus">Status</h3>
-<div id="allStatuses"></div>
 
+<div id="allStatuses"></div>
 </div>
 
 
+<!-- GROUPS -->
 <div id="groupsArea" class="container hidden">
 
 <h2 data-i18n="groups">👥 Groups</h2>
@@ -248,6 +288,7 @@ data-placeholder="writeStatusPlaceholder"></textarea>
 </div>
 
 
+<!-- CREATE GROUP -->
 <div id="groupArea" class="container hidden">
 
 <h2 data-i18n="createGroupTitle">👥 Tengeneza Group</h2>
@@ -276,14 +317,16 @@ Tengeneza Group
 </div>
 
 
+<!-- PRIVATE CHAT -->
 <div id="privateChatArea" class="container hidden">
 
 <h2 id="privateChatTitle">💬 Chat</h2>
+
 <div id="chatMessages"></div>
 
 <input id="chatInput" type="text"
 placeholder="Andika ujumbe..."
-data-placeholder="writeMessage">
+data-placeholder="messagePlaceholder">
 
 <button id="sendBtn" data-i18n="send">Tuma</button>
 
@@ -295,19 +338,24 @@ data-placeholder="writeMessage">
 </div>
 
 
+<!-- PROFILE -->
 <div id="profileArea" class="container hidden">
 
 <h2 data-i18n="profile">👤 Profile</h2>
+
 <div class="profileIcon">👤</div>
 
 <input id="profileName" type="text"
-placeholder="Jina" data-placeholder="name">
+placeholder="Jina"
+data-placeholder="name">
 
 <textarea id="profileBio"
-placeholder="Kuhusu wewe" data-placeholder="aboutYou"></textarea>
+placeholder="Kuhusu wewe"
+data-placeholder="aboutYou"></textarea>
 
 <input id="profileCountry" type="text"
-placeholder="Nchi" data-placeholder="country">
+placeholder="Nchi"
+data-placeholder="country">
 
 <select id="profileLanguage">
 <option value="sw">🇹🇿 Kiswahili</option>
@@ -317,7 +365,7 @@ placeholder="Nchi" data-placeholder="country">
 <option value="ar">🇸🇦 العربية</option>
 </select>
 
-<button id="saveProfileBtn" data-i18n="save">
+<button id="saveProfileBtn" data-i18n="saveProfile">
 💾 Hifadhi Profile
 </button>
 
@@ -329,6 +377,7 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 
+<!-- LANGUAGE -->
 <div id="languageArea" class="container hidden">
 
 <h2 data-i18n="language">🌐 Language</h2>
@@ -341,7 +390,7 @@ placeholder="Nchi" data-placeholder="country">
 <option value="ar">🇸🇦 العربية</option>
 </select>
 
-<button id="saveLanguageBtn" data-i18n="save">
+<button id="saveLanguageBtn" data-i18n="saveLanguage">
 💾 Hifadhi Language
 </button>
 
@@ -351,12 +400,13 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 
+<!-- PRIVACY -->
 <div id="privacyArea" class="container hidden">
 
 <h2 data-i18n="privacy">🔒 Privacy</h2>
 
 <div class="settingItem">
-<strong>👁️ <span data-i18n="lastSeen">Last Seen</span></strong>
+<strong data-i18n="lastSeen">👁️ Last Seen</strong>
 
 <div class="switch">
 <span data-i18n="showLastSeen">Onyesha Last Seen</span>
@@ -365,7 +415,7 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 <div class="settingItem">
-<strong>📸 <span data-i18n="statusPrivacy">Status Privacy</span></strong>
+<strong data-i18n="statusPrivacy">📸 Status Privacy</strong>
 
 <select id="statusPrivacy">
 <option value="everyone" data-i18n="everyone">Everyone</option>
@@ -375,7 +425,7 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 <div class="settingItem">
-<strong>👤 <span data-i18n="profilePrivacy">Profile Privacy</span></strong>
+<strong data-i18n="profilePrivacy">👤 Profile Privacy</strong>
 
 <select id="profilePrivacy">
 <option value="everyone" data-i18n="everyone">Everyone</option>
@@ -384,7 +434,7 @@ placeholder="Nchi" data-placeholder="country">
 </select>
 </div>
 
-<button id="savePrivacyBtn" data-i18n="save">
+<button id="savePrivacyBtn" data-i18n="savePrivacy">
 💾 Hifadhi Privacy
 </button>
 
@@ -396,6 +446,7 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 
+<!-- SETTINGS -->
 <div id="settingsArea" class="container hidden">
 
 <h2 data-i18n="settings">⚙️ Settings</h2>
@@ -413,7 +464,7 @@ placeholder="Nchi" data-placeholder="country">
 </button>
 
 <div class="settingItem">
-<strong>🔔 <span data-i18n="notifications">Notifications</span></strong>
+<strong data-i18n="notifications">🔔 Notifications</strong>
 
 <div class="switch">
 <span data-i18n="allowNotifications">Ruhusu notifications</span>
@@ -422,20 +473,24 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 <div class="settingItem">
-<strong>🌙 <span data-i18n="appearance">Appearance</span></strong>
+<strong data-i18n="appearance">🌙 Appearance</strong>
 
 <select id="appearanceSetting">
-<option value="light">☀️ Light</option>
-<option value="dark">🌙 Dark</option>
+<option value="light" data-i18n="light">☀️ Light</option>
+<option value="dark" data-i18n="dark">🌙 Dark</option>
 </select>
 </div>
 
 <div class="settingItem">
 <strong data-i18n="account">📱 Akaunti</strong>
-<p>Email: <span id="settingsEmail">-</span></p>
+
+<p>
+Email:
+<span id="settingsEmail">-</span>
+</p>
 </div>
 
-<button id="saveSettingsBtn" data-i18n="save">
+<button id="saveSettingsBtn" data-i18n="saveSettings">
 💾 Hifadhi Settings
 </button>
 
@@ -447,6 +502,7 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 
+<!-- NAV -->
 <div class="bottomNav">
 
 <button id="navChats" class="active">
@@ -473,17 +529,21 @@ placeholder="Nchi" data-placeholder="country">
 </div>
 
 
+<!-- STATUS VIEWER -->
 <div id="statusViewer" class="statusViewer hidden">
 
 <div class="statusViewerHeader">
+
 <h2 id="viewerUserName">📸 Status</h2>
 
 <button id="closeStatusViewer" data-i18n="close">
 ✕ Funga
 </button>
+
 </div>
 
 <div id="viewerStatuses"></div>
+
 </div>
 
 
@@ -493,15 +553,29 @@ import {initializeApp}
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
- getAuth,createUserWithEmailAndPassword,
- signInWithEmailAndPassword,onAuthStateChanged,signOut
+ getAuth,
+ createUserWithEmailAndPassword,
+ signInWithEmailAndPassword,
+ onAuthStateChanged,
+ signOut
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
- getFirestore,doc,setDoc,getDoc,collection,query,where,
- getDocs,addDoc,onSnapshot,serverTimestamp,orderBy,
- deleteDoc
+ getFirestore,
+ doc,
+ setDoc,
+ getDoc,
+ collection,
+ query,
+ where,
+ getDocs,
+ addDoc,
+ onSnapshot,
+ serverTimestamp,
+ orderBy,
+ deleteDoc,
+ getCountFromServer
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -520,6 +594,8 @@ const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
+
+let currentLanguage="sw";
 let currentChatUserId=null;
 let currentChatUserName=null;
 
@@ -529,10 +605,10 @@ let unsubscribePrivate=null;
 let unsubscribeGroups=null;
 let unsubscribeStatuses=null;
 
-let currentLanguage="sw";
 
-
-/* ================= TRANSLATION ================= */
+/* =========================
+LANGUAGES
+========================= */
 
 const translations={
 
@@ -547,45 +623,47 @@ settings:"Settings",
 privateChats:"Private Chats",
 search:"Tafuta",
 newChat:"➕ New Chat",
-noPrivate:"Hakuna private chat bado.",
+noChats:"Hakuna private chat bado.",
 noGroups:"Hakuna group bado.",
+status24:"Status hupotea baada ya saa 24.",
 writeStatus:"📝 Andika Status",
 writeStatusPlaceholder:"Andika status yako...",
 postStatus:"📝 Post Status",
-uploadPhoto:"📷 Weka Picha",
+putPhoto:"📷 Weka Picha",
 postPhoto:"📷 Post Picha",
 allStatus:"Status",
-statusExpires:"Status hupotea baada ya saa 24.",
 createGroup:"➕ Create Group",
 createGroupTitle:"👥 Tengeneza Group",
-groupName:"Jina la group",
-groupDescription:"Maelezo ya group",
-groupMembers:"Emails za members, tenga kwa comma",
 back:"← Rudi",
 backChats:"← Rudi Chats",
 send:"Tuma",
-writeMessage:"Andika ujumbe...",
+messagePlaceholder:"Andika ujumbe...",
 profile:"👤 Profile",
-aboutYou:"Kuhusu wewe",
 name:"Jina lako",
+aboutYou:"Kuhusu wewe",
 country:"Nchi",
-save:"💾 Hifadhi",
+saveProfile:"💾 Hifadhi Profile",
 language:"🌐 Language",
+saveLanguage:"💾 Hifadhi Language",
 privacy:"🔒 Privacy",
-lastSeen:"Last Seen",
+lastSeen:"👁️ Last Seen",
 showLastSeen:"Onyesha Last Seen",
-statusPrivacy:"Status Privacy",
-profilePrivacy:"Profile Privacy",
+statusPrivacy:"📸 Status Privacy",
+profilePrivacy:"👤 Profile Privacy",
 everyone:"Everyone",
 contacts:"My Contacts",
 nobody:"Nobody",
-notifications:"Notifications",
+savePrivacy:"💾 Hifadhi Privacy",
+notifications:"🔔 Notifications",
 allowNotifications:"Ruhusu notifications",
-appearance:"Appearance",
+appearance:"🌙 Appearance",
+light:"☀️ Light",
+dark:"🌙 Dark",
 account:"📱 Akaunti",
+saveSettings:"💾 Hifadhi Settings",
 logout:"🚪 Logout",
 close:"✕ Funga",
-searchEmail:"🔍 Tafuta kwa email"
+searchEmail:"🔍 Tafuta kwa email..."
 },
 
 en:{
@@ -599,45 +677,47 @@ settings:"Settings",
 privateChats:"Private Chats",
 search:"Search",
 newChat:"➕ New Chat",
-noPrivate:"No private chats yet.",
+noChats:"No private chats yet.",
 noGroups:"No groups yet.",
+status24:"Status disappears after 24 hours.",
 writeStatus:"📝 Write Status",
 writeStatusPlaceholder:"Write your status...",
 postStatus:"📝 Post Status",
-uploadPhoto:"📷 Upload Photo",
+putPhoto:"📷 Add Photo",
 postPhoto:"📷 Post Photo",
-allStatus:"All Status",
-statusExpires:"Status disappears after 24 hours.",
+allStatus:"Status",
 createGroup:"➕ Create Group",
 createGroupTitle:"👥 Create Group",
-groupName:"Group name",
-groupDescription:"Group description",
-groupMembers:"Member emails, separated by comma",
 back:"← Back",
 backChats:"← Back to Chats",
 send:"Send",
-writeMessage:"Write a message...",
+messagePlaceholder:"Write a message...",
 profile:"👤 Profile",
-aboutYou:"About you",
 name:"Your name",
+aboutYou:"About you",
 country:"Country",
-save:"💾 Save",
+saveProfile:"💾 Save Profile",
 language:"🌐 Language",
+saveLanguage:"💾 Save Language",
 privacy:"🔒 Privacy",
-lastSeen:"Last Seen",
+lastSeen:"👁️ Last Seen",
 showLastSeen:"Show Last Seen",
-statusPrivacy:"Status Privacy",
-profilePrivacy:"Profile Privacy",
+statusPrivacy:"📸 Status Privacy",
+profilePrivacy:"👤 Profile Privacy",
 everyone:"Everyone",
 contacts:"My Contacts",
 nobody:"Nobody",
-notifications:"Notifications",
+savePrivacy:"💾 Save Privacy",
+notifications:"🔔 Notifications",
 allowNotifications:"Allow notifications",
-appearance:"Appearance",
+appearance:"🌙 Appearance",
+light:"☀️ Light",
+dark:"🌙 Dark",
 account:"📱 Account",
-logout:"🚪 Log out",
+saveSettings:"💾 Save Settings",
+logout:"🚪 Logout",
 close:"✕ Close",
-searchEmail:"🔍 Search by email"
+searchEmail:"🔍 Search by email..."
 },
 
 fr:{
@@ -651,45 +731,47 @@ settings:"Paramètres",
 privateChats:"Discussions privées",
 search:"Rechercher",
 newChat:"➕ Nouvelle discussion",
-noPrivate:"Aucune discussion privée.",
+noChats:"Aucune discussion privée.",
 noGroups:"Aucun groupe.",
+status24:"Le statut disparaît après 24 heures.",
 writeStatus:"📝 Écrire un statut",
 writeStatusPlaceholder:"Écrivez votre statut...",
-postStatus:"📝 Publier le statut",
-uploadPhoto:"📷 Ajouter une photo",
+postStatus:"📝 Publier",
+putPhoto:"📷 Ajouter une photo",
 postPhoto:"📷 Publier la photo",
-allStatus:"Tous les statuts",
-statusExpires:"Le statut disparaît après 24 heures.",
+allStatus:"Statut",
 createGroup:"➕ Créer un groupe",
 createGroupTitle:"👥 Créer un groupe",
-groupName:"Nom du groupe",
-groupDescription:"Description du groupe",
-groupMembers:"Emails des membres, séparés par des virgules",
 back:"← Retour",
 backChats:"← Retour aux discussions",
 send:"Envoyer",
-writeMessage:"Écrire un message...",
+messagePlaceholder:"Écrire un message...",
 profile:"👤 Profil",
-aboutYou:"À propos de vous",
 name:"Votre nom",
+aboutYou:"À propos de vous",
 country:"Pays",
-save:"💾 Enregistrer",
+saveProfile:"💾 Enregistrer le profil",
 language:"🌐 Langue",
+saveLanguage:"💾 Enregistrer la langue",
 privacy:"🔒 Confidentialité",
-lastSeen:"Dernière connexion",
+lastSeen:"👁️ Dernière connexion",
 showLastSeen:"Afficher la dernière connexion",
-statusPrivacy:"Confidentialité du statut",
-profilePrivacy:"Confidentialité du profil",
+statusPrivacy:"📸 Confidentialité du statut",
+profilePrivacy:"👤 Confidentialité du profil",
 everyone:"Tout le monde",
 contacts:"Mes contacts",
 nobody:"Personne",
-notifications:"Notifications",
+savePrivacy:"💾 Enregistrer",
+notifications:"🔔 Notifications",
 allowNotifications:"Autoriser les notifications",
-appearance:"Apparence",
+appearance:"🌙 Apparence",
+light:"☀️ Clair",
+dark:"🌙 Sombre",
 account:"📱 Compte",
+saveSettings:"💾 Enregistrer",
 logout:"🚪 Déconnexion",
 close:"✕ Fermer",
-searchEmail:"🔍 Rechercher par email"
+searchEmail:"🔍 Rechercher par email..."
 },
 
 es:{
@@ -703,97 +785,101 @@ settings:"Configuración",
 privateChats:"Chats privados",
 search:"Buscar",
 newChat:"➕ Nuevo chat",
-noPrivate:"No hay chats privados.",
+noChats:"No hay chats privados.",
 noGroups:"No hay grupos.",
+status24:"El estado desaparece después de 24 horas.",
 writeStatus:"📝 Escribir estado",
 writeStatusPlaceholder:"Escribe tu estado...",
 postStatus:"📝 Publicar estado",
-uploadPhoto:"📷 Subir foto",
+putPhoto:"📷 Añadir foto",
 postPhoto:"📷 Publicar foto",
-allStatus:"Todos los estados",
-statusExpires:"El estado desaparece después de 24 horas.",
+allStatus:"Estado",
 createGroup:"➕ Crear grupo",
 createGroupTitle:"👥 Crear grupo",
-groupName:"Nombre del grupo",
-groupDescription:"Descripción del grupo",
-groupMembers:"Emails de miembros, separados por comas",
 back:"← Volver",
 backChats:"← Volver a chats",
 send:"Enviar",
-writeMessage:"Escribe un mensaje...",
+messagePlaceholder:"Escribe un mensaje...",
 profile:"👤 Perfil",
-aboutYou:"Sobre ti",
 name:"Tu nombre",
+aboutYou:"Sobre ti",
 country:"País",
-save:"💾 Guardar",
+saveProfile:"💾 Guardar perfil",
 language:"🌐 Idioma",
+saveLanguage:"💾 Guardar idioma",
 privacy:"🔒 Privacidad",
-lastSeen:"Última conexión",
+lastSeen:"👁️ Última conexión",
 showLastSeen:"Mostrar última conexión",
-statusPrivacy:"Privacidad del estado",
-profilePrivacy:"Privacidad del perfil",
+statusPrivacy:"📸 Privacidad del estado",
+profilePrivacy:"👤 Privacidad del perfil",
 everyone:"Todos",
 contacts:"Mis contactos",
 nobody:"Nadie",
-notifications:"Notificaciones",
+savePrivacy:"💾 Guardar privacidad",
+notifications:"🔔 Notificaciones",
 allowNotifications:"Permitir notificaciones",
-appearance:"Apariencia",
+appearance:"🌙 Apariencia",
+light:"☀️ Claro",
+dark:"🌙 Oscuro",
 account:"📱 Cuenta",
+saveSettings:"💾 Guardar configuración",
 logout:"🚪 Cerrar sesión",
 close:"✕ Cerrar",
-searchEmail:"🔍 Buscar por email"
+searchEmail:"🔍 Buscar por email..."
 },
 
 ar:{
 welcome:"مرحباً بك في Chatpoa 👋",
 signup:"إنشاء حساب",
 login:"تسجيل الدخول",
-chats:"الدردشات",
+chats:"المحادثات",
 status:"الحالة",
 groups:"المجموعات",
 settings:"الإعدادات",
-privateChats:"الدردشات الخاصة",
+privateChats:"المحادثات الخاصة",
 search:"بحث",
 newChat:"➕ محادثة جديدة",
-noPrivate:"لا توجد محادثات خاصة.",
+noChats:"لا توجد محادثات خاصة.",
 noGroups:"لا توجد مجموعات.",
-writeStatus:"📝 كتابة حالة",
+status24:"تختفي الحالة بعد 24 ساعة.",
+writeStatus:"📝 اكتب حالة",
 writeStatusPlaceholder:"اكتب حالتك...",
 postStatus:"📝 نشر الحالة",
-uploadPhoto:"📷 رفع صورة",
+putPhoto:"📷 إضافة صورة",
 postPhoto:"📷 نشر الصورة",
-allStatus:"كل الحالات",
-statusExpires:"تختفي الحالة بعد 24 ساعة.",
+allStatus:"الحالة",
 createGroup:"➕ إنشاء مجموعة",
 createGroupTitle:"👥 إنشاء مجموعة",
-groupName:"اسم المجموعة",
-groupDescription:"وصف المجموعة",
-groupMembers:"بريد الأعضاء، مفصول بفواصل",
 back:"← رجوع",
-backChats:"← العودة للدردشات",
+backChats:"← العودة للمحادثات",
 send:"إرسال",
-writeMessage:"اكتب رسالة...",
+messagePlaceholder:"اكتب رسالة...",
 profile:"👤 الملف الشخصي",
-aboutYou:"عن نفسك",
 name:"اسمك",
-country:"البلد",
-save:"💾 حفظ",
+aboutYou:"عن نفسك",
+country:"الدولة",
+saveProfile:"💾 حفظ الملف",
 language:"🌐 اللغة",
+saveLanguage:"💾 حفظ اللغة",
 privacy:"🔒 الخصوصية",
-lastSeen:"آخر ظهور",
+lastSeen:"👁️ آخر ظهور",
 showLastSeen:"إظهار آخر ظهور",
-statusPrivacy:"خصوصية الحالة",
-profilePrivacy:"خصوصية الملف الشخصي",
+statusPrivacy:"📸 خصوصية الحالة",
+profilePrivacy:"👤 خصوصية الملف",
 everyone:"الجميع",
 contacts:"جهات الاتصال",
 nobody:"لا أحد",
-notifications:"الإشعارات",
+savePrivacy:"💾 حفظ الخصوصية",
+notifications:"🔔 الإشعارات",
 allowNotifications:"السماح بالإشعارات",
-appearance:"المظهر",
+appearance:"🌙 المظهر",
+light:"☀️ فاتح",
+dark:"🌙 داكن",
 account:"📱 الحساب",
+saveSettings:"💾 حفظ الإعدادات",
 logout:"🚪 تسجيل الخروج",
 close:"✕ إغلاق",
-searchEmail:"🔍 البحث بالبريد الإلكتروني"
+searchEmail:"🔍 البحث بالبريد الإلكتروني..."
 }
 
 };
@@ -808,105 +894,141 @@ key;
 
 function applyLanguage(lang){
 
-currentLanguage=translations[lang]?lang:"sw";
+if(!translations[lang]) lang="sw";
 
-document.documentElement.lang=currentLanguage;
-document.documentElement.dir=
-currentLanguage==="ar"?"rtl":"ltr";
+currentLanguage=lang;
+
+document.documentElement.lang=lang;
+
+if(lang==="ar"){
+document.body.dir="rtl";
+}else{
+document.body.dir="ltr";
+}
 
 document.querySelectorAll("[data-i18n]").forEach(el=>{
-el.textContent=t(el.dataset.i18n);
+const key=el.getAttribute("data-i18n");
+el.textContent=t(key);
 });
 
 document.querySelectorAll("[data-placeholder]").forEach(el=>{
-el.placeholder=t(el.dataset.placeholder);
+const key=el.getAttribute("data-placeholder");
+el.placeholder=t(key);
 });
 
 }
 
 
-async function loadLanguage(){
+async function saveCurrentLanguage(lang){
 
 const user=auth.currentUser;
 
 if(!user)return;
 
-const snap=await getDoc(doc(db,"users",user.uid));
-
-if(snap.exists()){
-
-const lang=snap.data().language||"sw";
-
-currentLanguage=lang;
-
-document.getElementById("languageSelect").value=lang;
-document.getElementById("profileLanguage").value=lang;
+await setDoc(
+doc(db,"users",user.uid),
+{language:lang},
+{merge:true}
+);
 
 applyLanguage(lang);
-
-}
-
 }
 
 
-/* ================= PAGES ================= */
-
-const pages=[
-"chatsArea","statusArea","groupsArea","groupArea",
-"privateChatArea","profileArea","languageArea",
-"privacyArea","settingsArea"
-];
+/* =========================
+PAGE NAVIGATION
+========================= */
 
 function hidePages(){
-pages.forEach(id=>{
-document.getElementById(id).classList.add("hidden");
-});
+
+[
+document.getElementById("chatsArea"),
+document.getElementById("statusArea"),
+document.getElementById("groupsArea"),
+document.getElementById("groupArea"),
+document.getElementById("privateChatArea"),
+document.getElementById("profileArea"),
+document.getElementById("languageArea"),
+document.getElementById("privacyArea"),
+document.getElementById("settingsArea")
+].forEach(x=>x.classList.add("hidden"));
+
 }
 
+
 function setActiveNav(id){
+
 document.querySelectorAll(".bottomNav button")
 .forEach(x=>x.classList.remove("active"));
 
 document.getElementById(id).classList.add("active");
 }
 
+
 function showChats(){
+
 hidePages();
-chatsArea.classList.remove("hidden");
+
+document.getElementById("chatsArea")
+.classList.remove("hidden");
+
 setActiveNav("navChats");
+
 loadPrivateChats();
 loadStatuses();
 }
 
+
 function showStatus(){
+
 hidePages();
-statusArea.classList.remove("hidden");
+
+document.getElementById("statusArea")
+.classList.remove("hidden");
+
 setActiveNav("navStatus");
+
 loadAllStatuses();
 }
 
+
 function showGroups(){
+
 hidePages();
-groupsArea.classList.remove("hidden");
+
+document.getElementById("groupsArea")
+.classList.remove("hidden");
+
 setActiveNav("navGroups");
+
 loadGroups();
 }
 
+
 function showSettings(){
+
 hidePages();
-settingsArea.classList.remove("hidden");
+
+document.getElementById("settingsArea")
+.classList.remove("hidden");
+
 setActiveNav("navSettings");
+
 loadSettings();
 }
 
 
-/* ================= AUTH ================= */
+/* =========================
+SIGNUP
+========================= */
 
-document.getElementById("signupBtn").onclick=async()=>{
+document.getElementById("signupBtn")
+.addEventListener("click",async()=>{
 
 const name=document.getElementById("name").value.trim();
 const email=document.getElementById("email").value.trim().toLowerCase();
 const password=document.getElementById("password").value;
+
 const message=document.getElementById("message");
 
 if(!name||!email||!password){
@@ -925,7 +1047,9 @@ const result=await createUserWithEmailAndPassword(
 auth,email,password
 );
 
-await setDoc(doc(db,"users",result.user.uid),{
+await setDoc(
+doc(db,"users",result.user.uid),
+{
 name,
 email,
 bio:"",
@@ -937,7 +1061,8 @@ profilePrivacy:"everyone",
 notifications:true,
 appearance:"light",
 createdAt:serverTimestamp()
-});
+}
+);
 
 message.textContent="Umejisajili kikamilifu.";
 
@@ -945,50 +1070,82 @@ message.textContent="Umejisajili kikamilifu.";
 message.textContent=error.message;
 }
 
-};
+});
 
 
-document.getElementById("loginBtn").onclick=async()=>{
+/* LOGIN */
 
-const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+document.getElementById("loginBtn")
+.addEventListener("click",async()=>{
+
+const email=document.getElementById("loginEmail")
+.value.trim().toLowerCase();
+
 const password=document.getElementById("loginPassword").value;
 
 if(!email||!password){
+
 document.getElementById("message").textContent=
 "Weka email na password.";
+
 return;
 }
 
 try{
-await signInWithEmailAndPassword(auth,email,password);
+
+await signInWithEmailAndPassword(
+auth,email,password
+);
+
 }catch(error){
-document.getElementById("message").textContent=error.message;
+
+document.getElementById("message").textContent=
+error.message;
+
 }
 
-};
+});
 
+
+/* AUTH */
 
 onAuthStateChanged(auth,async user=>{
 
 if(user){
 
-authArea.classList.add("hidden");
-appArea.classList.remove("hidden");
+document.getElementById("authArea")
+.classList.add("hidden");
 
-document.getElementById("settingsEmail").textContent=
-user.email||"-";
+document.getElementById("appArea")
+.classList.remove("hidden");
+
+document.getElementById("settingsEmail")
+.textContent=user.email||"-";
 
 await loadProfile();
 await loadPrivacy();
 await loadSettings();
-await loadLanguage();
+
+const snap=await getDoc(
+doc(db,"users",user.uid)
+);
+
+if(snap.exists()){
+applyLanguage(snap.data().language||"sw");
+}else{
+applyLanguage("sw");
+}
 
 showChats();
 
 }else{
 
-authArea.classList.remove("hidden");
-appArea.classList.add("hidden");
+document.getElementById("authArea")
+.classList.remove("hidden");
+
+document.getElementById("appArea")
+.classList.add("hidden");
+
 stopAllListeners();
 
 }
@@ -996,23 +1153,50 @@ stopAllListeners();
 });
 
 
+/* STOP LISTENERS */
+
 function stopAllListeners(){
 
-if(unsubscribeSent){unsubscribeSent();unsubscribeSent=null}
-if(unsubscribeReceived){unsubscribeReceived();unsubscribeReceived=null}
-if(unsubscribePrivate){unsubscribePrivate();unsubscribePrivate=null}
-if(unsubscribeGroups){unsubscribeGroups();unsubscribeGroups=null}
-if(unsubscribeStatuses){unsubscribeStatuses();unsubscribeStatuses=null}
+if(unsubscribeSent){
+unsubscribeSent();
+unsubscribeSent=null;
+}
+
+if(unsubscribeReceived){
+unsubscribeReceived();
+unsubscribeReceived=null;
+}
+
+if(unsubscribePrivate){
+unsubscribePrivate();
+unsubscribePrivate=null;
+}
+
+if(unsubscribeGroups){
+unsubscribeGroups();
+unsubscribeGroups=null;
+}
+
+if(unsubscribeStatuses){
+unsubscribeStatuses();
+unsubscribeStatuses=null;
+}
 
 }
 
 
-/* ================= SEARCH ================= */
+/* =========================
+SEARCH USER
+========================= */
 
-document.getElementById("searchBtn").onclick=async()=>{
+document.getElementById("searchBtn")
+.addEventListener("click",async()=>{
 
-const email=document.getElementById("searchUser").value.trim().toLowerCase();
+const email=document.getElementById("searchUser")
+.value.trim().toLowerCase();
+
 const result=document.getElementById("searchResult");
+
 const user=auth.currentUser;
 
 if(!email){
@@ -1020,14 +1204,24 @@ result.textContent="Andika email.";
 return;
 }
 
+if(!user){
+result.textContent="Login kwanza.";
+return;
+}
+
 if(email===user.email){
-result.textContent="Huwezi kuanzisha chat na wewe mwenyewe.";
+result.textContent=
+"Huwezi kuanzisha chat na wewe mwenyewe.";
 return;
 }
 
 try{
 
-const q=query(collection(db,"users"),where("email","==",email));
+const q=query(
+collection(db,"users"),
+where("email","==",email)
+);
+
 const snap=await getDocs(q);
 
 if(snap.empty){
@@ -1040,31 +1234,36 @@ result.innerHTML="";
 snap.forEach(userDoc=>{
 
 const data=userDoc.data();
+
 const div=document.createElement("div");
 
 div.className="chatCard";
 
 div.innerHTML=`
-<div class="chatName">👤 ${escapeHTML(data.name||"User")}</div>
-<div class="lastMessage">${escapeHTML(data.email||"")}</div>
+<div class="chatName">👤 ${data.name||"User"}</div>
+<div class="lastMessage">${data.email}</div>
 `;
 
-div.onclick=()=>openPrivateChat(
-userDoc.id,data.name||"User"
-);
+div.onclick=()=>{
+openPrivateChat(userDoc.id,data.name||"User");
+};
 
 result.appendChild(div);
 
 });
 
 }catch(error){
+
 result.textContent=error.message;
+
 }
 
-};
+});
 
 
-/* ================= PRIVATE CHAT ================= */
+/* =========================
+PRIVATE CHAT
+========================= */
 
 function openPrivateChat(userId,userName){
 
@@ -1072,11 +1271,14 @@ currentChatUserId=userId;
 currentChatUserName=userName;
 
 hidePages();
-privateChatArea.classList.remove("hidden");
+
+document.getElementById("privateChatArea")
+.classList.remove("hidden");
+
 setActiveNav("navChats");
 
-document.getElementById("privateChatTitle").textContent=
-"💬 Chat na "+userName;
+document.getElementById("privateChatTitle")
+.textContent="💬 Chat na "+userName;
 
 loadMessages();
 
@@ -1085,10 +1287,18 @@ loadMessages();
 
 function loadMessages(){
 
-if(unsubscribeSent){unsubscribeSent();unsubscribeSent=null}
-if(unsubscribeReceived){unsubscribeReceived();unsubscribeReceived=null}
+if(unsubscribeSent){
+unsubscribeSent();
+unsubscribeSent=null;
+}
+
+if(unsubscribeReceived){
+unsubscribeReceived();
+unsubscribeReceived=null;
+}
 
 const user=auth.currentUser;
+
 if(!user||!currentChatUserId)return;
 
 const area=document.getElementById("chatMessages");
@@ -1115,10 +1325,13 @@ all.forEach(message=>{
 
 const div=document.createElement("div");
 
-div.className=
-"message "+
-(message.senderId===user.uid
-?"myMessage":"theirMessage");
+div.className="message";
+
+div.classList.add(
+message.senderId===user.uid
+?"myMessage"
+:"theirMessage"
+);
 
 div.textContent=message.text||"";
 
@@ -1141,60 +1354,83 @@ where("receiverId","==",user.uid)
 );
 
 unsubscribeSent=onSnapshot(sentQ,snap=>{
-sent=snap.docs.map(d=>({id:d.id,...d.data()}))
+
+sent=snap.docs
+.map(d=>({id:d.id,...d.data()}))
 .filter(x=>x.receiverId===currentChatUserId);
+
 display();
+
 });
 
 unsubscribeReceived=onSnapshot(receivedQ,snap=>{
-received=snap.docs.map(d=>({id:d.id,...d.data()}))
+
+received=snap.docs
+.map(d=>({id:d.id,...d.data()}))
 .filter(x=>x.senderId===currentChatUserId);
+
 display();
+
 });
 
 }
 
 
-document.getElementById("sendBtn").onclick=async()=>{
+/* SEND MESSAGE */
+
+document.getElementById("sendBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
+
 const input=document.getElementById("chatInput");
+
 const text=input.value.trim();
 
 if(!user||!currentChatUserId||!text)return;
 
 try{
 
-await addDoc(collection(db,"messages"),{
+await addDoc(
+collection(db,"messages"),
+{
 senderId:user.uid,
 receiverId:currentChatUserId,
 text,
 clientTime:Date.now(),
 createdAt:serverTimestamp()
-});
+}
+);
 
 input.value="";
 
 }catch(error){
-document.getElementById("privateMessage").textContent=
-error.message;
+
+document.getElementById("privateMessage")
+.textContent=error.message;
+
 }
 
-};
+});
 
-document.getElementById("chatInput").onkeydown=e=>{
+
+document.getElementById("chatInput")
+.addEventListener("keydown",e=>{
+
 if(e.key==="Enter"){
 e.preventDefault();
 document.getElementById("sendBtn").click();
 }
-};
+
+});
 
 
-/* ================= CHAT LIST ================= */
+/* CHAT LIST */
 
 function loadPrivateChats(){
 
 const user=auth.currentUser;
+
 if(!user)return;
 
 const area=document.getElementById("privateChats");
@@ -1215,19 +1451,22 @@ let received=[];
 function update(){
 
 const all=[...sent,...received];
+
 const conversations={};
 
 all.forEach(m=>{
 
 const other=
-m.senderId===user.uid?m.receiverId:m.senderId;
+m.senderId===user.uid
+?m.receiverId
+:m.senderId;
 
-if(!conversations[other] ||
+if(
+!conversations[other] ||
 (m.clientTime||0)>
-(conversations[other].clientTime||0)){
-
+(conversations[other].clientTime||0)
+){
 conversations[other]=m;
-
 }
 
 });
@@ -1239,7 +1478,7 @@ const ids=Object.keys(conversations);
 if(!ids.length){
 
 area.innerHTML=
-`<div class="chatCard">${t("noPrivate")}</div>`;
+`<div class="chatCard">${t("noChats")}</div>`;
 
 return;
 
@@ -1253,8 +1492,9 @@ try{
 
 const snap=await getDoc(doc(db,"users",id));
 
-if(snap.exists())
+if(snap.exists()){
 name=snap.data().name||name;
+}
 
 }catch(e){}
 
@@ -1263,8 +1503,10 @@ const card=document.createElement("div");
 card.className="chatCard";
 
 card.innerHTML=`
-<div class="chatName">👤 ${escapeHTML(name)}</div>
-<div class="lastMessage">${escapeHTML(conversations[id].text||"")}</div>
+<div class="chatName">👤 ${name}</div>
+<div class="lastMessage">
+${conversations[id].text||""}
+</div>
 `;
 
 card.onclick=()=>openPrivateChat(id,name);
@@ -1288,30 +1530,50 @@ update();
 if(unsubscribePrivate)unsubscribePrivate();
 
 unsubscribePrivate=()=>{
-u1();u2();
+u1();
+u2();
 };
 
 }
 
 
-/* ================= GROUPS ================= */
+/* =========================
+GROUPS
+========================= */
 
-document.getElementById("newGroupBtn").onclick=()=>{
+document.getElementById("newGroupBtn")
+.addEventListener("click",()=>{
+
 hidePages();
-groupArea.classList.remove("hidden");
-};
 
-document.getElementById("saveGroupBtn").onclick=async()=>{
+document.getElementById("groupArea")
+.classList.remove("hidden");
+
+});
+
+
+document.getElementById("saveGroupBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
 
-const name=document.getElementById("groupName").value.trim();
-const description=document.getElementById("groupDescription").value.trim();
+const name=document.getElementById("groupName")
+.value.trim();
 
-const emails=document.getElementById("groupMembers").value
-.split(",").map(x=>x.trim().toLowerCase()).filter(Boolean);
+const description=document.getElementById("groupDescription")
+.value.trim();
+
+const emails=document.getElementById("groupMembers")
+.value.split(",")
+.map(x=>x.trim().toLowerCase())
+.filter(Boolean);
 
 const message=document.getElementById("groupMessage");
+
+if(!user){
+message.textContent="Login kwanza.";
+return;
+}
 
 if(!name){
 message.textContent="Weka jina la group.";
@@ -1332,7 +1594,11 @@ where("email","==",email)
 const snap=await getDocs(q);
 
 snap.forEach(d=>{
-if(!members.includes(d.id))members.push(d.id);
+
+if(!members.includes(d.id)){
+members.push(d.id);
+}
+
 });
 
 }catch(e){}
@@ -1341,13 +1607,16 @@ if(!members.includes(d.id))members.push(d.id);
 
 try{
 
-await addDoc(collection(db,"groups"),{
+await addDoc(
+collection(db,"groups"),
+{
 name,
 description,
 ownerId:user.uid,
 members,
 createdAt:serverTimestamp()
-});
+}
+);
 
 message.textContent="Group imetengenezwa.";
 
@@ -1358,15 +1627,18 @@ document.getElementById("groupMembers").value="";
 showGroups();
 
 }catch(error){
+
 message.textContent=error.message;
+
 }
 
-};
+});
 
 
 function loadGroups(){
 
 const user=auth.currentUser;
+
 if(!user)return;
 
 const area=document.getElementById("groupChats");
@@ -1383,9 +1655,12 @@ unsubscribeGroups=onSnapshot(q,snap=>{
 area.innerHTML="";
 
 if(snap.empty){
+
 area.innerHTML=
 `<div class="chatCard">${t("noGroups")}</div>`;
+
 return;
+
 }
 
 snap.docs.forEach(d=>{
@@ -1397,8 +1672,10 @@ const card=document.createElement("div");
 card.className="chatCard";
 
 card.innerHTML=`
-<div class="chatName">👥 ${escapeHTML(data.name)}</div>
-<div class="lastMessage">${escapeHTML(data.description||"Chatpoa Group")}</div>
+<div class="chatName">👥 ${data.name}</div>
+<div class="lastMessage">
+${data.description||"Chatpoa Group"}
+</div>
 `;
 
 area.appendChild(card);
@@ -1410,14 +1687,19 @@ area.appendChild(card);
 }
 
 
-/* ================= PROFILE ================= */
+/* =========================
+PROFILE
+========================= */
 
 async function loadProfile(){
 
 const user=auth.currentUser;
+
 if(!user)return;
 
-const snap=await getDoc(doc(db,"users",user.uid));
+const snap=await getDoc(
+doc(db,"users",user.uid)
+);
 
 if(!snap.exists())return;
 
@@ -1431,37 +1713,57 @@ document.getElementById("profileLanguage").value=data.language||"sw";
 }
 
 
-document.getElementById("saveProfileBtn").onclick=async()=>{
+document.getElementById("saveProfileBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
 
+if(!user)return;
+
 try{
 
-await setDoc(doc(db,"users",user.uid),{
+const language=
+document.getElementById("profileLanguage").value;
+
+await setDoc(
+doc(db,"users",user.uid),
+{
 name:document.getElementById("profileName").value.trim(),
 bio:document.getElementById("profileBio").value.trim(),
 country:document.getElementById("profileCountry").value.trim(),
-language:document.getElementById("profileLanguage").value
-},{merge:true});
+language
+},
+{merge:true}
+);
 
-document.getElementById("profileMessage").textContent=
-"Profile imehifadhiwa.";
+applyLanguage(language);
+
+document.getElementById("profileMessage")
+.textContent="Profile imehifadhiwa.";
 
 }catch(error){
-document.getElementById("profileMessage").textContent=error.message;
+
+document.getElementById("profileMessage")
+.textContent=error.message;
+
 }
 
-};
+});
 
 
-/* ================= PRIVACY ================= */
+/* =========================
+PRIVACY
+========================= */
 
 async function loadPrivacy(){
 
 const user=auth.currentUser;
+
 if(!user)return;
 
-const snap=await getDoc(doc(db,"users",user.uid));
+const snap=await getDoc(
+doc(db,"users",user.uid)
+);
 
 if(!snap.exists())return;
 
@@ -1479,48 +1781,64 @@ data.profilePrivacy||"everyone";
 }
 
 
-document.getElementById("savePrivacyBtn").onclick=async()=>{
+document.getElementById("savePrivacyBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
 
+if(!user)return;
+
 try{
 
-await setDoc(doc(db,"users",user.uid),{
+await setDoc(
+doc(db,"users",user.uid),
+{
 lastSeen:document.getElementById("lastSeenSetting").checked,
 statusPrivacy:document.getElementById("statusPrivacy").value,
 profilePrivacy:document.getElementById("profilePrivacy").value
-},{merge:true});
+},
+{merge:true}
+);
 
-document.getElementById("privacyMessage").textContent=
-"Privacy imehifadhiwa.";
+document.getElementById("privacyMessage")
+.textContent="Privacy imehifadhiwa.";
 
 }catch(error){
-document.getElementById("privacyMessage").textContent=error.message;
+
+document.getElementById("privacyMessage")
+.textContent=error.message;
+
 }
 
-};
+});
 
 
-/* ================= SETTINGS ================= */
+/* =========================
+SETTINGS
+========================= */
 
 async function loadSettings(){
 
 const user=auth.currentUser;
+
 if(!user)return;
 
-document.getElementById("settingsEmail").textContent=user.email||"-";
+document.getElementById("settingsEmail")
+.textContent=user.email||"-";
 
-const snap=await getDoc(doc(db,"users",user.uid));
+const snap=await getDoc(
+doc(db,"users",user.uid)
+);
 
 if(!snap.exists())return;
 
 const data=snap.data();
 
-document.getElementById("notificationSetting").checked=
-data.notifications!==false;
+document.getElementById("notificationSetting")
+.checked=data.notifications!==false;
 
-document.getElementById("appearanceSetting").value=
-data.appearance||"light";
+document.getElementById("appearanceSetting")
+.value=data.appearance||"light";
 
 applyAppearance(data.appearance||"light");
 
@@ -1529,14 +1847,21 @@ applyAppearance(data.appearance||"light");
 
 function applyAppearance(value){
 
-document.body.classList.toggle("darkMode",value==="dark");
+if(value==="dark"){
+document.body.classList.add("darkMode");
+}else{
+document.body.classList.remove("darkMode");
+}
 
 }
 
 
-document.getElementById("saveSettingsBtn").onclick=async()=>{
+document.getElementById("saveSettingsBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
+
+if(!user)return;
 
 const appearance=
 document.getElementById("appearanceSetting").value;
@@ -1546,55 +1871,58 @@ document.getElementById("notificationSetting").checked;
 
 try{
 
-await setDoc(doc(db,"users",user.uid),{
+await setDoc(
+doc(db,"users",user.uid),
+{
 appearance,
 notifications
-},{merge:true});
+},
+{merge:true}
+);
 
 applyAppearance(appearance);
 
-document.getElementById("settingsMessage").textContent=
-"Settings zimehifadhiwa.";
+document.getElementById("settingsMessage")
+.textContent="Settings zimehifadhiwa.";
 
 }catch(error){
-document.getElementById("settingsMessage").textContent=error.message;
+
+document.getElementById("settingsMessage")
+.textContent=error.message;
+
 }
 
-};
+});
 
 
-/* ================= LANGUAGE ================= */
+/* =========================
+LANGUAGE
+========================= */
 
-document.getElementById("saveLanguageBtn").onclick=async()=>{
+document.getElementById("saveLanguageBtn")
+.addEventListener("click",async()=>{
 
-const user=auth.currentUser;
-
-const lang=document.getElementById("languageSelect").value;
+const lang=
+document.getElementById("languageSelect").value;
 
 try{
 
-await setDoc(doc(db,"users",user.uid),{
-language:lang
-},{merge:true});
+await saveCurrentLanguage(lang);
 
-document.getElementById("profileLanguage").value=lang;
-
-applyLanguage(lang);
-
-alert(
-lang==="en"
-?"Language saved."
-:"Language imehifadhiwa."
-);
+alert("Language imehifadhiwa.");
 
 }catch(error){
+
 alert(error.message);
+
 }
 
-};
+});
 
 
-/* ================= STATUS ================= */
+/* =========================
+STATUS
+========================= */
 
 function loadStatuses(){
 loadAllStatuses();
@@ -1607,8 +1935,10 @@ const area=document.getElementById("allStatuses");
 const bar=document.getElementById("statusBar");
 
 if(unsubscribeStatuses){
+
 unsubscribeStatuses();
 unsubscribeStatuses=null;
+
 }
 
 const q=query(
@@ -1626,6 +1956,9 @@ const statuses=snap.docs
 
 bar.innerHTML="";
 
+
+/* MY STATUS */
+
 const mine=document.createElement("div");
 
 mine.className="statusItem";
@@ -1633,56 +1966,81 @@ mine.className="statusItem";
 mine.innerHTML=`
 <div class="statusCircle">➕</div>
 <div class="statusName">
-${currentLanguage==="en"?"My Status":"Status yangu"}
+${currentLanguage==="en"?"My Status":
+currentLanguage==="fr"?"Mon statut":
+currentLanguage==="es"?"Mi estado":
+currentLanguage==="ar"?"حالتي":
+"Status yangu"}
 </div>
 `;
 
 mine.onclick=()=>{
-showStatus();
+
+hidePages();
+
+document.getElementById("statusArea")
+.classList.remove("hidden");
+
+setActiveNav("navStatus");
+
 document.getElementById("statusText").focus();
+
 };
 
 bar.appendChild(mine);
+
+
+/* GROUP STATUS BY USER */
 
 const users={};
 
 statuses.forEach(status=>{
 
-if(!users[status.userId])
+if(!users[status.userId]){
 users[status.userId]=[];
+}
 
 users[status.userId].push(status);
 
 });
 
+
 Object.keys(users).forEach(userId=>{
 
 const list=users[userId];
 
-list.sort((a,b)=>
-(b.clientTime||0)-(a.clientTime||0)
+list.sort(
+(a,b)=>(b.clientTime||0)-(a.clientTime||0)
 );
 
 const latest=list[0];
 
 const item=document.createElement("div");
+
 item.className="statusItem";
 
 const circle=document.createElement("div");
+
 circle.className="statusCircle";
 
 if(latest.type==="image"&&latest.imageData){
 
 const img=document.createElement("img");
+
 img.src=latest.imageData;
+
 circle.appendChild(img);
 
 }else{
+
 circle.textContent="📝";
+
 }
 
 const name=document.createElement("div");
+
 name.className="statusName";
+
 name.textContent=latest.userName||"User";
 
 item.appendChild(circle);
@@ -1695,16 +2053,22 @@ bar.appendChild(item);
 });
 
 
+/* ALL STATUS */
+
 area.innerHTML="";
 
 if(!statuses.length){
-area.innerHTML=
-"<p>Hakuna status bado.</p>";
+
+area.innerHTML="<p>Hakuna status bado.</p>";
+
 return;
+
 }
 
 statuses.forEach(status=>{
+
 area.appendChild(createStatusCard(status));
+
 });
 
 });
@@ -1712,41 +2076,50 @@ area.appendChild(createStatusCard(status));
 }
 
 
-/* ================= STATUS CARD + LIKE + COMMENT ================= */
+/* =========================
+STATUS CARD + LIKE + COMMENT
+========================= */
 
 function createStatusCard(status){
 
 const card=document.createElement("div");
+
 card.className="statusCard";
 
 const title=document.createElement("div");
 
 title.innerHTML=
-"<b>👤 "+escapeHTML(status.userName||"User")+"</b>";
+"<b>👤 "+(status.userName||"User")+"</b>";
 
 card.appendChild(title);
+
 
 if(status.type==="image"){
 
 const img=document.createElement("img");
+
 img.src=status.imageData;
+
 card.appendChild(img);
 
 }else{
 
 const text=document.createElement("div");
+
 text.className="statusText";
+
 text.textContent=status.text||"";
+
 card.appendChild(text);
 
 }
 
+
 const meta=document.createElement("div");
+
 meta.className="statusMeta";
-meta.textContent=
-currentLanguage==="en"
-?"Status • 24 hours"
-:"Status • saa 24";
+
+meta.textContent="Status • 24h";
 
 card.appendChild(meta);
 
@@ -1754,144 +2127,85 @@ card.appendChild(meta);
 /* ACTIONS */
 
 const actions=document.createElement("div");
+
 actions.className="statusActions";
 
 const likeBtn=document.createElement("button");
-likeBtn.className="likeBtn";
-likeBtn.textContent="❤️ 0";
+
+likeBtn.textContent="❤️ Like";
 
 const commentBtn=document.createElement("button");
-commentBtn.textContent="💬 0";
+
+commentBtn.textContent="💬 Comment";
 
 actions.appendChild(likeBtn);
 actions.appendChild(commentBtn);
+
 card.appendChild(actions);
+
+
+/* LIKE */
+
+loadLikeCount(status.id,likeBtn);
+
+likeBtn.onclick=async()=>{
+
+await toggleLike(status.id,likeBtn);
+
+};
 
 
 /* COMMENTS */
 
-const commentSection=document.createElement("div");
-commentSection.className="comments hidden";
+const commentsBox=document.createElement("div");
 
-const commentBox=document.createElement("div");
-commentBox.className="commentBox";
+commentsBox.className="commentsBox hidden";
+
+const commentsList=document.createElement("div");
+
+commentsBox.appendChild(commentsList);
 
 const commentInput=document.createElement("input");
+
 commentInput.placeholder=
 currentLanguage==="en"
 ?"Write a comment..."
 :"Andika comment...";
 
-const commentSend=document.createElement("button");
-commentSend.textContent=
-currentLanguage==="en"?"Send":"Tuma";
+commentsBox.appendChild(commentInput);
 
-commentBox.appendChild(commentInput);
-commentBox.appendChild(commentSend);
+const sendComment=document.createElement("button");
 
-commentSection.appendChild(commentBox);
+sendComment.textContent=
+currentLanguage==="en"
+?"Send Comment"
+:"Tuma Comment";
 
-const commentsList=document.createElement("div");
-commentSection.appendChild(commentsList);
+commentsBox.appendChild(sendComment);
 
-card.appendChild(commentSection);
+card.appendChild(commentsBox);
 
 
 commentBtn.onclick=()=>{
 
-commentSection.classList.toggle("hidden");
+commentsBox.classList.toggle("hidden");
 
-loadComments(
-status.id,
-commentsList,
-commentBtn
-);
-
-};
-
-
-async function refreshLike(){
-
-const likesSnap=await getDocs(
-collection(db,"statuses",status.id,"likes")
-);
-
-const count=likesSnap.size;
-
-likeBtn.textContent="❤️ "+count;
-
-const user=auth.currentUser;
-
-if(user){
-
-const myLike=await getDoc(
-doc(db,"statuses",status.id,"likes",user.uid)
-);
-
-likeBtn.classList.toggle("liked",myLike.exists());
-
-}
-
-}
-
-
-likeBtn.onclick=async()=>{
-
-const user=auth.currentUser;
-
-if(!user){
-alert("Login kwanza.");
-return;
-}
-
-try{
-
-const likeRef=doc(
-db,
-"statuses",
-status.id,
-"likes",
-user.uid
-);
-
-const existing=await getDoc(likeRef);
-
-if(existing.exists()){
-
-await deleteDoc(likeRef);
-
-}else{
-
-await setDoc(likeRef,{
-userId:user.uid,
-createdAt:serverTimestamp()
-});
-
-}
-
-await refreshLike();
-
-}catch(error){
-
-alert(error.message);
-
+if(!commentsBox.classList.contains("hidden")){
+loadComments(status.id,commentsList);
 }
 
 };
 
 
-commentSend.onclick=async()=>{
-
-const user=auth.currentUser;
+sendComment.onclick=async()=>{
 
 const text=commentInput.value.trim();
 
-if(!user){
-alert("Login kwanza.");
-return;
-}
-
 if(!text)return;
+
+const user=auth.currentUser;
+
+if(!user)return;
 
 try{
 
@@ -1899,15 +2213,20 @@ const userSnap=await getDoc(
 doc(db,"users",user.uid)
 );
 
-const name=userSnap.exists()
+const userName=userSnap.exists()
 ?userSnap.data().name||"User"
 :"User";
 
 await addDoc(
-collection(db,"statuses",status.id,"comments"),
+collection(
+db,
+"statuses",
+status.id,
+"comments"
+),
 {
 userId:user.uid,
-userName:name,
+userName,
 text,
 clientTime:Date.now(),
 createdAt:serverTimestamp()
@@ -1916,11 +2235,7 @@ createdAt:serverTimestamp()
 
 commentInput.value="";
 
-await loadComments(
-status.id,
-commentsList,
-commentBtn
-);
+loadComments(status.id,commentsList);
 
 }catch(error){
 
@@ -1931,16 +2246,7 @@ alert(error.message);
 };
 
 
-refreshLike();
-
-loadComments(
-status.id,
-commentsList,
-commentBtn
-);
-
-
-/* DELETE */
+/* DELETE OWN STATUS */
 
 const user=auth.currentUser;
 
@@ -1950,19 +2256,20 @@ const del=document.createElement("button");
 
 del.className="statusDelete";
 
-del.textContent=
-currentLanguage==="en"
-?"🗑️ Delete Status"
-:"🗑️ Futa Status";
+del.textContent="🗑️ Futa Status";
 
 del.onclick=async()=>{
 
 try{
 
-await deleteDoc(doc(db,"statuses",status.id));
+await deleteDoc(
+doc(db,"statuses",status.id)
+);
 
 }catch(error){
+
 alert(error.message);
+
 }
 
 };
@@ -1976,9 +2283,102 @@ return card;
 }
 
 
-/* LOAD COMMENTS */
+/* =========================
+LIKE FUNCTIONS
+========================= */
 
-async function loadComments(statusId,area,button){
+async function loadLikeCount(statusId,button){
+
+try{
+
+const q=query(
+collection(db,"statuses",statusId,"likes")
+);
+
+const snap=await getDocs(q);
+
+const user=auth.currentUser;
+
+let liked=false;
+
+if(user){
+liked=snap.docs.some(
+d=>d.id===user.uid
+);
+}
+
+button.textContent=
+liked
+?`❤️ ${snap.size}`
+:`🤍 ${snap.size}`;
+
+if(liked){
+button.classList.add("liked");
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+async function toggleLike(statusId,button){
+
+const user=auth.currentUser;
+
+if(!user)return;
+
+try{
+
+const likeRef=doc(
+db,
+"statuses",
+statusId,
+"likes",
+user.uid
+);
+
+const existing=await getDoc(likeRef);
+
+if(existing.exists()){
+
+await deleteDoc(likeRef);
+
+}else{
+
+await setDoc(
+likeRef,
+{
+userId:user.uid,
+createdAt:serverTimestamp()
+}
+);
+
+}
+
+await loadLikeCount(statusId,button);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Like imekataa: "+error.message
+);
+
+}
+
+}
+
+
+/* =========================
+COMMENTS
+========================= */
+
+async function loadComments(statusId,area){
 
 try{
 
@@ -1991,19 +2391,28 @@ const snap=await getDocs(q);
 
 area.innerHTML="";
 
-button.textContent=
-"💬 "+snap.size;
+if(snap.empty){
+
+area.innerHTML=
+"<div class='comment'>Hakuna comment bado.</div>";
+
+return;
+
+}
 
 snap.docs.forEach(d=>{
 
 const data=d.data();
 
 const div=document.createElement("div");
+
 div.className="comment";
 
-div.innerHTML=
-`<strong>${escapeHTML(data.userName||"User")}</strong>
-${escapeHTML(data.text||"")}`;
+div.innerHTML=`
+<b>👤 ${data.userName||"User"}</b>
+<br>
+<span>${escapeHTML(data.text||"")}</span>
+`;
 
 area.appendChild(div);
 
@@ -2011,14 +2420,27 @@ area.appendChild(div);
 
 }catch(error){
 
-console.error("Comments:",error);
+console.error(error);
 
 }
 
 }
 
 
-/* ================= VIEWER ================= */
+function escapeHTML(text){
+
+const div=document.createElement("div");
+
+div.textContent=text;
+
+return div.innerHTML;
+
+}
+
+
+/* =========================
+VIEW USER STATUSES
+========================= */
 
 function viewUserStatuses(userId,list){
 
@@ -2028,13 +2450,12 @@ const title=document.getElementById("viewerUserName");
 
 area.innerHTML="";
 
-const validStatuses=list
-.filter(status=>
-(status.expiresAt||0)>Date.now()
+const validStatuses=list.filter(
+status=>(status.expiresAt||0)>Date.now()
 );
 
-validStatuses.sort((a,b)=>
-(a.clientTime||0)-(b.clientTime||0)
+validStatuses.sort(
+(a,b)=>(b.clientTime||0)-(a.clientTime||0)
 );
 
 title.textContent=
@@ -2042,38 +2463,139 @@ title.textContent=
 
 if(!validStatuses.length){
 
-area.innerHTML="<p>Hakuna status inayopatikana.</p>";
+area.innerHTML=
+"<p>Hakuna status inayopatikana.</p>";
 
 }else{
 
 validStatuses.forEach(status=>{
 
 const card=document.createElement("div");
+
 card.className="viewerStatus";
 
 if(status.type==="image"&&status.imageData){
 
 const img=document.createElement("img");
+
 img.src=status.imageData;
+img.alt="Status";
+
 card.appendChild(img);
 
 }else{
 
 const text=document.createElement("div");
+
 text.className="viewerStatusText";
+
 text.textContent=status.text||"";
+
 card.appendChild(text);
 
 }
 
 const time=document.createElement("div");
+
 time.className="viewerTime";
-time.textContent=
-currentLanguage==="en"
-?"Status • 24 hours"
-:"Status • saa 24";
+
+time.textContent="Status • 24h";
 
 card.appendChild(time);
+
+
+/* VIEWER LIKE */
+
+const likeBtn=document.createElement("button");
+
+likeBtn.textContent="❤️ Like";
+
+likeBtn.style.marginTop="10px";
+
+loadLikeCount(status.id,likeBtn);
+
+likeBtn.onclick=async()=>{
+await toggleLike(status.id,likeBtn);
+};
+
+card.appendChild(likeBtn);
+
+
+/* VIEWER COMMENTS */
+
+const commentInput=document.createElement("input");
+
+commentInput.placeholder=
+currentLanguage==="en"
+?"Write a comment..."
+:"Andika comment...";
+
+card.appendChild(commentInput);
+
+const commentBtn=document.createElement("button");
+
+commentBtn.textContent=
+currentLanguage==="en"
+?"💬 Comment"
+:"💬 Comment";
+
+card.appendChild(commentBtn);
+
+const comments=document.createElement("div");
+
+comments.className="commentsBox";
+
+card.appendChild(comments);
+
+loadComments(status.id,comments);
+
+commentBtn.onclick=async()=>{
+
+const text=commentInput.value.trim();
+
+if(!text)return;
+
+const user=auth.currentUser;
+
+if(!user)return;
+
+try{
+
+const snap=await getDoc(
+doc(db,"users",user.uid)
+);
+
+const userName=snap.exists()
+?snap.data().name||"User"
+:"User";
+
+await addDoc(
+collection(
+db,
+"statuses",
+status.id,
+"comments"
+),
+{
+userId:user.uid,
+userName,
+text,
+clientTime:Date.now(),
+createdAt:serverTimestamp()
+}
+);
+
+commentInput.value="";
+
+loadComments(status.id,comments);
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
 
 area.appendChild(card);
 
@@ -2086,15 +2608,23 @@ viewer.classList.remove("hidden");
 }
 
 
-document.getElementById("closeStatusViewer").onclick=()=>{
+/* CLOSE VIEWER */
+
+document.getElementById("closeStatusViewer")
+.addEventListener("click",()=>{
+
 document.getElementById("statusViewer")
 .classList.add("hidden");
-};
+
+});
 
 
-/* ================= POST TEXT STATUS ================= */
+/* =========================
+TEXT STATUS
+========================= */
 
-document.getElementById("postTextStatusBtn").onclick=async()=>{
+document.getElementById("postTextStatusBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
 
@@ -2103,6 +2633,11 @@ const text=document.getElementById("statusText")
 
 const message=document.getElementById("statusMessage");
 
+if(!user){
+message.textContent="Login kwanza.";
+return;
+}
+
 if(!text){
 message.textContent="Andika status kwanza.";
 return;
@@ -2110,15 +2645,17 @@ return;
 
 try{
 
-const snap=await getDoc(
+const userSnap=await getDoc(
 doc(db,"users",user.uid)
 );
 
-const name=snap.exists()
-?snap.data().name||"User"
+const name=userSnap.exists()
+?userSnap.data().name||"User"
 :"User";
 
-await addDoc(collection(db,"statuses"),{
+await addDoc(
+collection(db,"statuses"),
+{
 userId:user.uid,
 userName:name,
 type:"text",
@@ -2126,27 +2663,40 @@ text,
 clientTime:Date.now(),
 createdAt:serverTimestamp(),
 expiresAt:Date.now()+86400000
-});
+}
+);
 
 document.getElementById("statusText").value="";
+
 message.textContent="Status imepostiwa.";
 
 }catch(error){
+
 message.textContent=error.message;
+
 }
 
-};
+});
 
 
-/* ================= IMAGE STATUS ================= */
+/* =========================
+IMAGE STATUS
+========================= */
 
-document.getElementById("postImageStatusBtn").onclick=async()=>{
+document.getElementById("postImageStatusBtn")
+.addEventListener("click",async()=>{
 
 const user=auth.currentUser;
 
-const file=document.getElementById("statusImage").files[0];
+const file=document.getElementById("statusImage")
+.files[0];
 
 const message=document.getElementById("statusMessage");
+
+if(!user){
+message.textContent="Login kwanza.";
+return;
+}
 
 if(!file){
 message.textContent="Chagua picha kwanza.";
@@ -2164,15 +2714,19 @@ message.textContent="Preparing picha...";
 
 const imageData=await compressImage(file);
 
-const snap=await getDoc(
+const userSnap=await getDoc(
 doc(db,"users",user.uid)
 );
 
-const name=snap.exists()
-?snap.data().name||"User"
+const name=userSnap.exists()
+?userSnap.data().name||"User"
 :"User";
 
-await addDoc(collection(db,"statuses"),{
+message.textContent="Inahifadhi picha...";
+
+await addDoc(
+collection(db,"statuses"),
+{
 userId:user.uid,
 userName:name,
 type:"image",
@@ -2180,7 +2734,8 @@ imageData,
 clientTime:Date.now(),
 createdAt:serverTimestamp(),
 expiresAt:Date.now()+86400000
-});
+}
+);
 
 document.getElementById("statusImage").value="";
 
@@ -2189,12 +2744,16 @@ message.textContent="Picha imepostiwa.";
 }catch(error){
 
 console.error(error);
-message.textContent="Kuna tatizo: "+error.message;
+
+message.textContent=
+"Kuna tatizo: "+error.message;
 
 }
 
-};
+});
 
+
+/* IMAGE COMPRESSION */
 
 function compressImage(file){
 
@@ -2216,11 +2775,15 @@ const max=900;
 if(width>max||height>max){
 
 if(width>height){
+
 height=Math.round(height*max/width);
 width=max;
+
 }else{
+
 width=Math.round(width*max/height);
 height=max;
+
 }
 
 }
@@ -2237,7 +2800,8 @@ ctx.drawImage(img,0,0,width,height);
 let quality=.75;
 
 let data=canvas.toDataURL(
-"image/jpeg",quality
+"image/jpeg",
+quality
 );
 
 while(data.length>700000&&quality>.25){
@@ -2245,7 +2809,8 @@ while(data.length>700000&&quality>.25){
 quality-=.05;
 
 data=canvas.toDataURL(
-"image/jpeg",quality
+"image/jpeg",
+quality
 );
 
 }
@@ -2253,27 +2818,30 @@ data=canvas.toDataURL(
 if(data.length>900000){
 
 reject(
-new Error("Picha ni kubwa sana. Chagua picha ndogo.")
+new Error(
+"Picha ni kubwa sana. Chagua picha ndogo."
+)
 );
 
 return;
+
 }
 
 resolve(data);
 
 };
 
-img.onerror=()=>{
-reject(new Error("Picha haijasomeka."));
-};
+img.onerror=()=>reject(
+new Error("Picha haijasomeka.")
+);
 
 img.src=e.target.result;
 
 };
 
-reader.onerror=()=>{
-reject(new Error("Imeshindwa kusoma picha."));
-};
+reader.onerror=()=>reject(
+new Error("Imeshindwa kusoma picha.")
+);
 
 reader.readAsDataURL(file);
 
@@ -2282,24 +2850,48 @@ reader.readAsDataURL(file);
 }
 
 
-/* ================= NAVIGATION ================= */
+/* =========================
+NAVIGATION
+========================= */
 
-document.getElementById("navChats").onclick=showChats;
-document.getElementById("navStatus").onclick=showStatus;
-document.getElementById("navGroups").onclick=showGroups;
-document.getElementById("navSettings").onclick=showSettings;
+document.getElementById("navChats")
+.addEventListener("click",showChats);
 
-document.getElementById("menuBtn").onclick=showSettings;
+document.getElementById("navStatus")
+.addEventListener("click",showStatus);
 
-document.getElementById("settingsProfileBtn").onclick=async()=>{
+document.getElementById("navGroups")
+.addEventListener("click",showGroups);
+
+document.getElementById("navSettings")
+.addEventListener("click",showSettings);
+
+document.getElementById("menuBtn")
+.addEventListener("click",showSettings);
+
+
+/* SETTINGS LINKS */
+
+document.getElementById("settingsProfileBtn")
+.addEventListener("click",async()=>{
+
 hidePages();
-profileArea.classList.remove("hidden");
+
+document.getElementById("profileArea")
+.classList.remove("hidden");
+
 await loadProfile();
-};
 
-document.getElementById("settingsLanguageBtn").onclick=async()=>{
+});
+
+
+document.getElementById("settingsLanguageBtn")
+.addEventListener("click",async()=>{
+
 hidePages();
-languageArea.classList.remove("hidden");
+
+document.getElementById("languageArea")
+.classList.remove("hidden");
 
 const user=auth.currentUser;
 
@@ -2310,55 +2902,70 @@ doc(db,"users",user.uid)
 );
 
 if(snap.exists()){
-document.getElementById("languageSelect").value=
-snap.data().language||"sw";
-}
+
+const lang=snap.data().language||"sw";
+
+document.getElementById("languageSelect").value=lang;
 
 }
 
-};
+}
 
-document.getElementById("settingsPrivacyBtn").onclick=async()=>{
+});
+
+
+document.getElementById("settingsPrivacyBtn")
+.addEventListener("click",async()=>{
+
 hidePages();
-privacyArea.classList.remove("hidden");
+
+document.getElementById("privacyArea")
+.classList.remove("hidden");
+
 await loadPrivacy();
-};
+
+});
 
 
-/* ================= BACK ================= */
+/* =========================
+BACK BUTTONS
+========================= */
 
-document.getElementById("backChatsBtn").onclick=showChats;
-document.getElementById("backGroupBtn").onclick=showGroups;
-document.getElementById("backProfileBtn").onclick=showSettings;
-document.getElementById("backLanguageBtn").onclick=showSettings;
-document.getElementById("backPrivacyBtn").onclick=showSettings;
+document.getElementById("backChatsBtn")
+.addEventListener("click",showChats);
 
-document.getElementById("newChatBtn").onclick=()=>{
+document.getElementById("backGroupBtn")
+.addEventListener("click",showGroups);
+
+document.getElementById("backProfileBtn")
+.addEventListener("click",showSettings);
+
+document.getElementById("backLanguageBtn")
+.addEventListener("click",showSettings);
+
+document.getElementById("backPrivacyBtn")
+.addEventListener("click",showSettings);
+
+document.getElementById("newChatBtn")
+.addEventListener("click",()=>{
+
 document.getElementById("searchUser").focus();
-};
+
+});
 
 
-/* ================= LOGOUT ================= */
+/* LOGOUT */
 
-document.getElementById("logoutBtn").onclick=async()=>{
+document.getElementById("logoutBtn")
+.addEventListener("click",async()=>{
+
 stopAllListeners();
+
 await signOut(auth);
-};
 
-
-/* ================= SECURITY HELPER ================= */
-
-function escapeHTML(value){
-
-return String(value??"")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
+});
 
 </script>
+
 </body>
 </html>
