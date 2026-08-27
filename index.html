@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sw">
 <head>
 <meta charset="UTF-8">
@@ -60,6 +60,7 @@ button{
  color:white;
  border:0;
  font-weight:bold;
+ cursor:pointer;
 }
 
 .secondary{background:#555}
@@ -246,6 +247,68 @@ button{
  padding:8px 15px;
 }
 
+/* STATUS VIEWER */
+
+.statusViewer{
+ position:fixed;
+ inset:0;
+ background:#111;
+ color:white;
+ z-index:500;
+ overflow-y:auto;
+ padding:20px;
+}
+
+.statusViewerHeader{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:15px;
+}
+
+.statusViewerHeader h2{
+ margin:0;
+ font-size:20px;
+}
+
+.statusViewerHeader button{
+ width:auto;
+ background:#333;
+ padding:10px 15px;
+ margin:0;
+}
+
+.viewerStatus{
+ background:#222;
+ border-radius:15px;
+ padding:15px;
+ margin-bottom:15px;
+ text-align:center;
+}
+
+.viewerStatus img{
+ display:block;
+ width:100%;
+ max-height:70vh;
+ object-fit:contain;
+ border-radius:12px;
+ margin:auto;
+}
+
+.viewerStatusText{
+ font-size:26px;
+ line-height:1.4;
+ padding:50px 15px;
+ word-wrap:break-word;
+}
+
+.viewerTime{
+ color:#aaa;
+ font-size:12px;
+ margin-top:10px;
+}
+
 .settingItem{
  padding:15px 5px;
  border-bottom:1px solid #eee;
@@ -313,6 +376,8 @@ button{
 
 <body>
 
+<!-- LOGIN / SIGNUP -->
+
 <div id="authArea" class="container">
 
 <h1>Karibu Chatpoa 👋</h1>
@@ -339,13 +404,20 @@ button{
 </div>
 
 
+<!-- APP -->
+
 <div id="appArea" class="hidden">
 
 <div class="topbar">
+
 <h2>Chatpoa</h2>
+
 <span id="menuBtn" class="menuBtn">⋮</span>
+
 </div>
 
+
+<!-- CHATS -->
 
 <div id="chatsArea" class="container">
 
@@ -379,6 +451,8 @@ button{
 
 </div>
 
+
+<!-- STATUS -->
 
 <div id="statusArea" class="container hidden">
 
@@ -419,6 +493,8 @@ button{
 </div>
 
 
+<!-- GROUPS -->
+
 <div id="groupsArea" class="container hidden">
 
 <h2>👥 Groups</h2>
@@ -433,6 +509,8 @@ button{
 
 </div>
 
+
+<!-- CREATE GROUP -->
 
 <div id="groupArea" class="container hidden">
 
@@ -468,6 +546,8 @@ Tengeneza Group
 </div>
 
 
+<!-- PRIVATE CHAT -->
+
 <div id="privateChatArea" class="container hidden">
 
 <h2 id="privateChatTitle">💬 Chat</h2>
@@ -491,6 +571,8 @@ Tengeneza Group
 </div>
 
 
+<!-- PROFILE -->
+
 <div id="profileArea" class="container hidden">
 
 <h2>👤 Profile</h2>
@@ -511,11 +593,13 @@ Tengeneza Group
 >
 
 <select id="profileLanguage">
+
 <option value="sw">🇹🇿 Kiswahili</option>
 <option value="en">🇬🇧 English</option>
 <option value="fr">🇫🇷 Français</option>
 <option value="es">🇪🇸 Español</option>
 <option value="ar">🇸🇦 العربية</option>
+
 </select>
 
 <button id="saveProfileBtn">
@@ -531,16 +615,20 @@ Tengeneza Group
 </div>
 
 
+<!-- LANGUAGE -->
+
 <div id="languageArea" class="container hidden">
 
 <h2>🌐 Language</h2>
 
 <select id="languageSelect">
+
 <option value="sw">🇹🇿 Kiswahili</option>
 <option value="en">🇬🇧 English</option>
 <option value="fr">🇫🇷 Français</option>
 <option value="es">🇪🇸 Español</option>
 <option value="ar">🇸🇦 العربية</option>
+
 </select>
 
 <button id="saveLanguageBtn">
@@ -553,6 +641,8 @@ Tengeneza Group
 
 </div>
 
+
+<!-- PRIVACY -->
 
 <div id="privacyArea" class="container hidden">
 
@@ -576,6 +666,7 @@ Tengeneza Group
 
 </div>
 
+
 <div class="settingItem">
 
 <strong>📸 Status Privacy</strong>
@@ -589,6 +680,7 @@ Tengeneza Group
 </select>
 
 </div>
+
 
 <div class="settingItem">
 
@@ -604,6 +696,7 @@ Tengeneza Group
 
 </div>
 
+
 <button id="savePrivacyBtn">
 💾 Hifadhi Privacy
 </button>
@@ -617,9 +710,12 @@ Tengeneza Group
 </div>
 
 
+<!-- SETTINGS -->
+
 <div id="settingsArea" class="container hidden">
 
 <h2>⚙️ Settings</h2>
+
 
 <button class="settingButton" id="settingsProfileBtn">
 👤 Profile
@@ -632,6 +728,7 @@ Tengeneza Group
 <button class="settingButton" id="settingsPrivacyBtn">
 🔒 Privacy
 </button>
+
 
 <div class="settingItem">
 
@@ -651,6 +748,7 @@ Tengeneza Group
 
 </div>
 
+
 <div class="settingItem">
 
 <strong>🌙 Appearance</strong>
@@ -664,6 +762,7 @@ Tengeneza Group
 
 </div>
 
+
 <div class="settingItem">
 
 <strong>📱 Akaunti</strong>
@@ -675,18 +774,23 @@ Email:
 
 </div>
 
+
 <button id="saveSettingsBtn">
 💾 Hifadhi Settings
 </button>
+
 
 <button class="danger" id="logoutBtn">
 🚪 Logout
 </button>
 
+
 <p id="settingsMessage"></p>
 
 </div>
 
+
+<!-- BOTTOM NAV -->
 
 <div class="bottomNav">
 
@@ -715,6 +819,25 @@ Settings
 </div>
 
 
+<!-- STATUS VIEWER -->
+
+<div id="statusViewer" class="statusViewer hidden">
+
+<div class="statusViewerHeader">
+
+<h2 id="viewerUserName">📸 Status</h2>
+
+<button id="closeStatusViewer">
+✕ Funga
+</button>
+
+</div>
+
+<div id="viewerStatuses"></div>
+
+</div>
+
+
 <script type="module">
 
 import {
@@ -722,6 +845,7 @@ import {
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 
 import {
  getAuth,
@@ -732,6 +856,7 @@ import {
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
 
 import {
  getFirestore,
@@ -779,22 +904,44 @@ measurementId:
 
 
 const app=initializeApp(firebaseConfig);
+
 const auth=getAuth(app);
+
 const db=getFirestore(app);
 
 
-const authArea=document.getElementById("authArea");
-const appArea=document.getElementById("appArea");
+const authArea=
+document.getElementById("authArea");
 
-const chatsArea=document.getElementById("chatsArea");
-const statusArea=document.getElementById("statusArea");
-const groupsArea=document.getElementById("groupsArea");
-const groupArea=document.getElementById("groupArea");
-const privateChatArea=document.getElementById("privateChatArea");
-const profileArea=document.getElementById("profileArea");
-const languageArea=document.getElementById("languageArea");
-const privacyArea=document.getElementById("privacyArea");
-const settingsArea=document.getElementById("settingsArea");
+const appArea=
+document.getElementById("appArea");
+
+const chatsArea=
+document.getElementById("chatsArea");
+
+const statusArea=
+document.getElementById("statusArea");
+
+const groupsArea=
+document.getElementById("groupsArea");
+
+const groupArea=
+document.getElementById("groupArea");
+
+const privateChatArea=
+document.getElementById("privateChatArea");
+
+const profileArea=
+document.getElementById("profileArea");
+
+const languageArea=
+document.getElementById("languageArea");
+
+const privacyArea=
+document.getElementById("privacyArea");
+
+const settingsArea=
+document.getElementById("settingsArea");
 
 
 let currentChatUserId=null;
@@ -898,15 +1045,14 @@ document
 .getElementById("signupBtn")
 .addEventListener("click",async()=>{
 
-const name=document.getElementById("name").value.trim();
+const name=
+document.getElementById("name").value.trim();
 
-const email=document
-.getElementById("email")
-.value
-.trim()
-.toLowerCase();
+const email=
+document.getElementById("email").value.trim().toLowerCase();
 
-const password=document.getElementById("password").value;
+const password=
+document.getElementById("password").value;
 
 
 if(!name||!email||!password){
@@ -981,10 +1127,7 @@ document
 .addEventListener("click",async()=>{
 
 const email=
-document.getElementById("loginEmail")
-.value
-.trim()
-.toLowerCase();
+document.getElementById("loginEmail").value.trim().toLowerCase();
 
 const password=
 document.getElementById("loginPassword").value;
@@ -1039,7 +1182,9 @@ await loadSettings();
 
 showChats();
 
-}else{
+}
+
+else{
 
 authArea.classList.remove("hidden");
 
@@ -1091,12 +1236,10 @@ document
 .addEventListener("click",async()=>{
 
 const email=
-document.getElementById("searchUser")
-.value
-.trim()
-.toLowerCase();
+document.getElementById("searchUser").value.trim().toLowerCase();
 
-const result=document.getElementById("searchResult");
+const result=
+document.getElementById("searchResult");
 
 const user=auth.currentUser;
 
@@ -1194,6 +1337,7 @@ result.textContent=error.message;
 function openPrivateChat(userId,userName){
 
 currentChatUserId=userId;
+
 currentChatUserName=userName;
 
 hidePages();
@@ -1228,7 +1372,8 @@ const user=auth.currentUser;
 if(!user||!currentChatUserId)return;
 
 
-const area=document.getElementById("chatMessages");
+const area=
+document.getElementById("chatMessages");
 
 let sent=[];
 let received=[];
@@ -1322,7 +1467,8 @@ document
 
 const user=auth.currentUser;
 
-const input=document.getElementById("chatInput");
+const input=
+document.getElementById("chatInput");
 
 const text=input.value.trim();
 
@@ -1383,7 +1529,8 @@ const user=auth.currentUser;
 if(!user)return;
 
 
-const area=document.getElementById("privateChats");
+const area=
+document.getElementById("privateChats");
 
 
 const sentQ=query(
@@ -1538,21 +1685,17 @@ document
 const user=auth.currentUser;
 
 const name=
-document.getElementById("groupName")
-.value
-.trim();
+document.getElementById("groupName").value.trim();
 
 const description=
-document.getElementById("groupDescription")
-.value
-.trim();
+document.getElementById("groupDescription").value.trim();
 
 const emails=
-document.getElementById("groupMembers")
-.value
+document.getElementById("groupMembers").value
 .split(",")
 .map(x=>x.trim().toLowerCase())
 .filter(Boolean);
+
 
 const message=
 document.getElementById("groupMessage");
@@ -1647,7 +1790,8 @@ const user=auth.currentUser;
 if(!user)return;
 
 
-const area=document.getElementById("groupChats");
+const area=
+document.getElementById("groupChats");
 
 
 const q=query(
@@ -1886,7 +2030,9 @@ document.getElementById("appearanceSetting").value=
 data.appearance||"light";
 
 
-applyAppearance(data.appearance||"light");
+applyAppearance(
+data.appearance||"light"
+);
 
 }
 
@@ -2001,13 +2147,17 @@ loadAllStatuses();
 
 function loadAllStatuses(){
 
-const area=document.getElementById("allStatuses");
-const bar=document.getElementById("statusBar");
+const area=
+document.getElementById("allStatuses");
+
+const bar=
+document.getElementById("statusBar");
 
 
 if(unsubscribeStatuses){
 
 unsubscribeStatuses();
+
 unsubscribeStatuses=null;
 
 }
@@ -2024,8 +2174,8 @@ onSnapshot(q,snap=>{
 
 const now=Date.now();
 
-
-const statuses=snap.docs
+const statuses=
+snap.docs
 .map(d=>({
 id:d.id,
 ...d.data()
@@ -2035,10 +2185,10 @@ id:d.id,
 );
 
 
-/* STATUS BAR */
-
 bar.innerHTML="";
 
+
+/* STATUS YANGU */
 
 const mine=document.createElement("div");
 
@@ -2069,7 +2219,6 @@ bar.appendChild(mine);
 
 const users={};
 
-
 statuses.forEach(status=>{
 
 if(!users[status.userId]){
@@ -2085,10 +2234,13 @@ users[status.userId].push(status);
 
 Object.keys(users).forEach(userId=>{
 
-const list=users[userId].sort(
+const list=users[userId];
+
+list.sort(
 (a,b)=>
 (b.clientTime||0)-(a.clientTime||0)
 );
+
 
 const latest=list[0];
 
@@ -2103,10 +2255,7 @@ const circle=document.createElement("div");
 circle.className="statusCircle";
 
 
-if(
-latest.type==="image" &&
-latest.imageData
-){
+if(latest.type==="image"&&latest.imageData){
 
 const img=document.createElement("img");
 
@@ -2130,6 +2279,7 @@ latest.userName||"User";
 
 
 item.appendChild(circle);
+
 item.appendChild(name);
 
 
@@ -2162,12 +2312,6 @@ return;
 
 }
 
-
-/*
- MUHIMU:
- HAPA HATUCHUKUI STATUS YA MWISHO PEKEE.
- STATUS ZOTE ZINAWEKWA.
-*/
 
 statuses.forEach(status=>{
 
@@ -2206,8 +2350,6 @@ if(status.type==="image"){
 const img=document.createElement("img");
 
 img.src=status.imageData;
-
-img.loading="lazy";
 
 card.appendChild(img);
 
@@ -2273,42 +2415,118 @@ return card;
 }
 
 
-/* VIEW ALL USER STATUSES */
+/* VIEW ALL STATUSES OF ONE USER */
 
 function viewUserStatuses(userId,list){
 
-hidePages();
-
-statusArea.classList.remove("hidden");
-
-setActiveNav("navStatus");
-
+const viewer=
+document.getElementById("statusViewer");
 
 const area=
-document.getElementById("allStatuses");
+document.getElementById("viewerStatuses");
+
+const title=
+document.getElementById("viewerUserName");
+
 
 area.innerHTML="";
 
 
-const sorted=[...list].sort(
+const validStatuses=list.filter(
+status=>(status.expiresAt||0)>Date.now()
+);
+
+
+validStatuses.sort(
 (a,b)=>
 (b.clientTime||0)-(a.clientTime||0)
 );
 
 
-/*
- HAPA ZOTE ZA MTU MMOJA ZINAONESHA.
-*/
-
-sorted.forEach(status=>{
-
-area.appendChild(
-createStatusCard(status)
+title.textContent=
+"📸 "+(
+validStatuses[0]?.userName||"User"
 );
+
+
+if(!validStatuses.length){
+
+area.innerHTML=
+"<p>Hakuna status inayopatikana.</p>";
+
+}else{
+
+validStatuses.forEach(status=>{
+
+const card=
+document.createElement("div");
+
+card.className="viewerStatus";
+
+
+if(
+status.type==="image" &&
+status.imageData
+){
+
+const img=
+document.createElement("img");
+
+img.src=status.imageData;
+
+img.alt="Status";
+
+card.appendChild(img);
+
+}else{
+
+const text=
+document.createElement("div");
+
+text.className="viewerStatusText";
+
+text.textContent=
+status.text||"";
+
+card.appendChild(text);
+
+}
+
+
+const time=
+document.createElement("div");
+
+time.className="viewerTime";
+
+time.textContent=
+"Status • saa 24";
+
+card.appendChild(time);
+
+
+area.appendChild(card);
 
 });
 
 }
+
+
+viewer.classList.remove("hidden");
+
+}
+
+
+/* CLOSE STATUS VIEWER */
+
+document
+.getElementById("closeStatusViewer")
+.addEventListener("click",()=>{
+
+document
+.getElementById("statusViewer")
+.classList.add("hidden");
+
+});
 
 
 /* TEXT STATUS */
@@ -2384,7 +2602,7 @@ message.textContent=
 catch(error){
 
 message.textContent=
-"Kuna tatizo: "+error.message;
+error.message;
 
 }
 
@@ -2400,8 +2618,7 @@ document
 const user=auth.currentUser;
 
 const file=
-document.getElementById("statusImage")
-.files[0];
+document.getElementById("statusImage").files[0];
 
 const message=
 document.getElementById("statusMessage");
@@ -2437,29 +2654,11 @@ return;
 try{
 
 message.textContent=
-"⏳ Inapunguza picha...";
+"Preparing picha...";
 
-
-/*
- Tunapunguza picha kabla ya kuiweka
- Firestore ili isizidi ukubwa.
-*/
 
 const imageData=
 await compressImage(file);
-
-
-if(imageData.length>950000){
-
-throw new Error(
-"Picha bado ni kubwa sana. Chagua picha nyingine."
-);
-
-}
-
-
-message.textContent=
-"⏳ Inahifadhi picha...";
 
 
 const userSnap=
@@ -2471,6 +2670,10 @@ const name=
 userSnap.exists()
 ?userSnap.data().name||"User"
 :"User";
+
+
+message.textContent=
+"Inahifadhi picha...";
 
 
 await addDoc(
@@ -2492,7 +2695,7 @@ expiresAt:Date.now()+86400000
 document.getElementById("statusImage").value="";
 
 message.textContent=
-"✅ Picha imepostiwa.";
+"Picha imepostiwa.";
 
 }
 
@@ -2501,7 +2704,7 @@ catch(error){
 console.error(error);
 
 message.textContent=
-"❌ "+error.message;
+"Kuna tatizo: "+error.message;
 
 }
 
@@ -2527,14 +2730,7 @@ img.onload=()=>{
 let width=img.width;
 let height=img.height;
 
-
-/*
- Max dimension imepunguzwa zaidi
- ili Firestore isiingie kwenye
- document size limit.
-*/
-
-const max=700;
+const max=900;
 
 
 if(width>max||height>max){
@@ -2558,13 +2754,15 @@ height=max;
 }
 
 
-const canvas=document.createElement("canvas");
+const canvas=
+document.createElement("canvas");
 
 canvas.width=width;
 canvas.height=height;
 
 
-const ctx=canvas.getContext("2d");
+const ctx=
+canvas.getContext("2d");
 
 ctx.drawImage(
 img,
@@ -2575,30 +2773,24 @@ height
 );
 
 
-/*
- Tunaanza na quality ndogo.
-*/
+let quality=.75;
 
-let quality=.65;
-
-let data=canvas.toDataURL(
+let data=
+canvas.toDataURL(
 "image/jpeg",
 quality
 );
 
 
-/*
- Punguza mpaka size iwe salama.
-*/
-
 while(
-data.length>600000 &&
-quality>.15
+data.length>700000 &&
+quality>.25
 ){
 
 quality-=.05;
 
-data=canvas.toDataURL(
+data=
+canvas.toDataURL(
 "image/jpeg",
 quality
 );
@@ -2606,11 +2798,11 @@ quality
 }
 
 
-if(data.length>800000){
+if(data.length>900000){
 
 reject(
 new Error(
-"Picha ni kubwa sana. Chagua picha yenye ukubwa mdogo."
+"Picha ni kubwa sana. Chagua picha ndogo."
 )
 );
 
@@ -2624,28 +2816,18 @@ resolve(data);
 };
 
 
-img.onerror=()=>{
-
-reject(
+img.onerror=()=>reject(
 new Error("Picha haijasomeka.")
 );
-
-};
-
 
 img.src=e.target.result;
 
 };
 
 
-reader.onerror=()=>{
-
-reject(
+reader.onerror=()=>reject(
 new Error("Imeshindwa kusoma picha.")
 );
-
-};
-
 
 reader.readAsDataURL(file);
 
@@ -2673,10 +2855,7 @@ document
 .addEventListener("click",showSettings);
 
 
-/*
- Doti tatu:
- zinafungua Settings tu.
-*/
+/* DOTS */
 
 document
 .getElementById("menuBtn")
