@@ -14,6 +14,13 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f2f5f7;
+      color: #222;
+      transition: 0.3s;
+    }
+
+    body.dark {
+      background: #18191a;
+      color: #f5f5f5;
     }
 
     .topbar {
@@ -43,6 +50,11 @@
       border-radius: 15px;
     }
 
+    body.dark .container {
+      background: #242526;
+      color: white;
+    }
+
     input,
     textarea,
     select,
@@ -54,6 +66,14 @@
       border: 1px solid #ccc;
     }
 
+    body.dark input,
+    body.dark textarea,
+    body.dark select {
+      background: #3a3b3c;
+      color: white;
+      border-color: #555;
+    }
+
     button {
       background: #1877f2;
       color: white;
@@ -62,8 +82,16 @@
       cursor: pointer;
     }
 
+    button:hover {
+      opacity: 0.9;
+    }
+
     .secondary {
       background: #555;
+    }
+
+    .danger {
+      background: #d32f2f;
     }
 
     .hidden {
@@ -81,11 +109,21 @@
       z-index: 20;
     }
 
+    body.dark #sideMenu {
+      background: #242526;
+    }
+
     #sideMenu button {
       background: white;
       color: #222;
       text-align: left;
       border-bottom: 1px solid #eee;
+    }
+
+    body.dark #sideMenu button {
+      background: #242526;
+      color: white;
+      border-bottom-color: #444;
     }
 
     .searchBox {
@@ -115,8 +153,16 @@
       cursor: pointer;
     }
 
+    body.dark .chatCard {
+      background: #3a3b3c;
+    }
+
     .chatCard:hover {
       background: #e5edf7;
+    }
+
+    body.dark .chatCard:hover {
+      background: #4a4b4c;
     }
 
     .chatName {
@@ -128,6 +174,10 @@
       color: #666;
       margin-top: 5px;
       font-size: 14px;
+    }
+
+    body.dark .lastMessage {
+      color: #bbb;
     }
 
     .profileIcon {
@@ -151,6 +201,10 @@
       border-radius: 10px;
     }
 
+    body.dark #chatMessages {
+      background: #3a3b3c;
+    }
+
     .message {
       padding: 9px 12px;
       margin: 6px 0;
@@ -171,6 +225,11 @@
       margin-right: auto;
     }
 
+    body.dark .theirMessage {
+      background: #555;
+      color: white;
+    }
+
     #message,
     #profileMessage,
     #groupMessage,
@@ -178,10 +237,44 @@
       text-align: center;
       font-weight: bold;
     }
+
+    .settingRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    body.dark .settingRow {
+      border-bottom-color: #444;
+    }
+
+    .settingRow span {
+      font-weight: bold;
+    }
+
+    .settingRow button {
+      width: auto;
+      min-width: 100px;
+      margin: 0;
+    }
+
+    .settingInfo {
+      color: #777;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    body.dark .settingInfo {
+      color: #bbb;
+    }
   </style>
 </head>
 
 <body>
+
+<!-- AUTH -->
 
 <div id="authArea" class="container">
 
@@ -212,6 +305,8 @@
 </div>
 
 
+<!-- APP -->
+
 <div id="appArea" class="hidden">
 
   <div class="topbar">
@@ -222,6 +317,8 @@
 
   </div>
 
+
+  <!-- MENU -->
 
   <div id="sideMenu" class="hidden">
 
@@ -262,9 +359,11 @@
     <h3 class="sectionTitle">👤 Private Chats</h3>
 
     <div id="privateChats">
+
       <div class="chatCard">
         Hakuna private chat bado.
       </div>
+
     </div>
 
 
@@ -341,7 +440,7 @@
     <input
       type="text"
       id="groupMembers"
-      placeholder="Emails za members"
+      placeholder="Emails za members, tenga kwa comma"
     >
 
     <button id="saveGroupBtn">
@@ -440,13 +539,74 @@
 
     <h2>⚙️ Settings</h2>
 
+    <div class="settingRow">
+
+      <div>
+        <span>🌙 Dark Mode</span>
+        <div class="settingInfo">
+          Badilisha muonekano wa Chatpoa.
+        </div>
+      </div>
+
+      <button id="darkModeBtn">
+        OFF
+      </button>
+
+    </div>
+
+
+    <div class="settingRow">
+
+      <div>
+        <span>🔔 Notifications</span>
+        <div class="settingInfo">
+          Ruhusu arifa za ujumbe.
+        </div>
+      </div>
+
+      <button id="notificationsBtn">
+        ON
+      </button>
+
+    </div>
+
+
+    <h3 class="sectionTitle">
+      🔒 Privacy
+    </h3>
+
     <p>
-      Settings za Chatpoa zitaongezwa hapa.
+      Taarifa zako za profile zinahifadhiwa kwenye akaunti yako ya Chatpoa.
+    </p>
+
+    <button id="privacyBtn">
+      🔒 Privacy Info
+    </button>
+
+
+    <h3 class="sectionTitle">
+      🔐 Password
+    </h3>
+
+    <button id="changePasswordBtn">
+      🔐 Change Password
+    </button>
+
+
+    <h3 class="sectionTitle">
+      ℹ️ About Chatpoa
+    </h3>
+
+    <p>
+      Chatpoa ni platform ya mawasiliano inayokuwezesha
+      kuzungumza na users wengine kupitia private chats na groups.
     </p>
 
     <button class="secondary" id="backSettingsBtn">
       ← Chats
     </button>
+
+    <p id="settingsMessage"></p>
 
   </div>
 
@@ -466,7 +626,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
+  updatePassword
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
@@ -486,6 +647,8 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+
+/* FIREBASE */
 
 const firebaseConfig = {
 
@@ -522,6 +685,8 @@ const auth =
 const db =
   getFirestore(app);
 
+
+/* ELEMENTS */
 
 const chatsArea =
   document.getElementById("chatsArea");
@@ -788,6 +953,8 @@ onAuthStateChanged(
       .classList
       .add("hidden");
 
+      stopMessageListeners();
+
       if (unsubscribeChatList) {
 
         unsubscribeChatList();
@@ -841,7 +1008,6 @@ document
     const result =
       document
       .getElementById("searchResult");
-
 
     const currentUser =
       auth.currentUser;
@@ -955,7 +1121,28 @@ document
 );
 
 
-/* OPEN CHAT */
+/* NEW CHAT */
+
+document
+.getElementById("newChatBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    document
+    .getElementById("searchUser")
+    .focus();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+);
+
+
+/* OPEN PRIVATE CHAT */
 
 function openPrivateChat(
   userId,
@@ -970,6 +1157,8 @@ function openPrivateChat(
 
 
   hidePages();
+
+  sideMenu.classList.add("hidden");
 
   privateChatArea
   .classList
@@ -1189,6 +1378,14 @@ function loadMessages() {
 
         displayMessages();
 
+      },
+      error => {
+
+        console.error(error);
+
+        messagesArea.innerHTML =
+        "<p>Imeshindikana kupakia ujumbe.</p>";
+
       }
     );
 
@@ -1215,10 +1412,139 @@ function loadMessages() {
 
         displayMessages();
 
+      },
+      error => {
+
+        console.error(error);
+
+        messagesArea.innerHTML =
+        "<p>Imeshindikana kupakia ujumbe.</p>";
+
       }
     );
 
 }
+
+
+/* SEND MESSAGE */
+
+document
+.getElementById("sendBtn")
+.addEventListener(
+  "click",
+  async () => {
+
+    const currentUser =
+      auth.currentUser;
+
+    const input =
+      document.getElementById(
+        "chatInput"
+      );
+
+    const text =
+      input.value.trim();
+
+    const message =
+      document.getElementById(
+        "privateMessage"
+      );
+
+
+    if (!currentUser) {
+
+      message.textContent =
+      "Login kwanza.";
+
+      return;
+
+    }
+
+
+    if (!currentChatUserId) {
+
+      message.textContent =
+      "Chagua mtu wa kuzungumza naye.";
+
+      return;
+
+    }
+
+
+    if (!text) {
+
+      return;
+
+    }
+
+
+    try {
+
+      await addDoc(
+        collection(
+          db,
+          "messages"
+        ),
+        {
+
+          senderId:
+          currentUser.uid,
+
+          receiverId:
+          currentChatUserId,
+
+          text:
+          text,
+
+          createdAt:
+          serverTimestamp()
+
+        }
+      );
+
+
+      input.value = "";
+
+      message.textContent = "";
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      message.textContent =
+      "Ujumbe haukutumwa: " +
+      error.message;
+
+    }
+
+  }
+);
+
+
+/* ENTER TO SEND */
+
+document
+.getElementById("chatInput")
+.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      event.preventDefault();
+
+      document
+      .getElementById("sendBtn")
+      .click();
+
+    }
+
+  }
+);
 
 
 /* PRIVATE CHAT LIST */
@@ -1312,13 +1638,11 @@ function loadPrivateChats() {
           const old =
             conversations[otherUserId];
 
-
           const oldTime =
             old.createdAt &&
             old.createdAt.toMillis
             ? old.createdAt.toMillis()
             : 0;
-
 
           const newTime =
             message.createdAt &&
@@ -1428,28 +1752,31 @@ function loadPrivateChats() {
 
 
         name.textContent =
-        "👤 " +
-        userName;
+        "👤 " + userName;
 
 
-        const last =
+        const preview =
           document.createElement(
             "div"
           );
 
 
-        last.className =
+        preview.className =
         "lastMessage";
 
 
-        last.textContent =
+        preview.textContent =
         lastMessage.text ||
-        "";
+        "Ujumbe";
 
 
-        card.appendChild(name);
+        card.appendChild(
+          name
+        );
 
-        card.appendChild(last);
+        card.appendChild(
+          preview
+        );
 
 
         card.onclick =
@@ -1473,20 +1800,18 @@ function loadPrivateChats() {
   }
 
 
-  const sentListener =
+  const unsubscribe1 =
     onSnapshot(
       sentQuery,
       snapshot => {
 
         sent =
-          snapshot.docs
-          .map(
+          snapshot.docs.map(
             item => ({
               id: item.id,
               ...item.data()
             })
           );
-
 
         updateList();
 
@@ -1494,20 +1819,18 @@ function loadPrivateChats() {
     );
 
 
-  const receivedListener =
+  const unsubscribe2 =
     onSnapshot(
       receivedQuery,
       snapshot => {
 
         received =
-          snapshot.docs
-          .map(
+          snapshot.docs.map(
             item => ({
               id: item.id,
               ...item.data()
             })
           );
-
 
         updateList();
 
@@ -1518,19 +1841,57 @@ function loadPrivateChats() {
   unsubscribeChatList =
   () => {
 
-    sentListener();
+    unsubscribe1();
 
-    receivedListener();
+    unsubscribe2();
 
   };
 
 }
 
 
-/* SEND MESSAGE */
+/* BACK TO CHATS */
 
 document
-.getElementById("sendBtn")
+.getElementById("backChatsBtn")
+.addEventListener(
+  "click",
+  showChats
+);
+
+
+/* GROUP PAGE */
+
+document
+.getElementById("newGroupBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    hidePages();
+
+    sideMenu.classList.add("hidden");
+
+    groupArea
+    .classList
+    .remove("hidden");
+
+  }
+);
+
+
+document
+.getElementById("backGroupBtn")
+.addEventListener(
+  "click",
+  showChats
+);
+
+
+/* CREATE GROUP */
+
+document
+.getElementById("saveGroupBtn")
 .addEventListener(
   "click",
   async () => {
@@ -1538,26 +1899,32 @@ document
     const currentUser =
       auth.currentUser;
 
-
-    const input =
+    const name =
       document
-      .getElementById("chatInput");
+      .getElementById("groupName")
+      .value
+      .trim();
 
-
-    const text =
-      input.value.trim();
-
-
-    const status =
+    const description =
       document
-      .getElementById(
-        "privateMessage"
-      );
+      .getElementById("groupDescription")
+      .value
+      .trim();
+
+    const membersText =
+      document
+      .getElementById("groupMembers")
+      .value
+      .trim();
+
+    const message =
+      document
+      .getElementById("groupMessage");
 
 
     if (!currentUser) {
 
-      status.textContent =
+      message.textContent =
       "Login kwanza.";
 
       return;
@@ -1565,17 +1932,80 @@ document
     }
 
 
-    if (!currentChatUserId) {
+    if (!name) {
 
-      status.textContent =
-      "Tafuta mtu kwanza.";
+      message.textContent =
+      "Weka jina la group.";
 
       return;
 
     }
 
 
-    if (!text) {
+    let emails =
+      membersText
+      ? membersText
+          .split(",")
+          .map(
+            email =>
+            email.trim().toLowerCase()
+          )
+          .filter(Boolean)
+      : [];
+
+
+    if (
+      !emails.includes(
+        currentUser.email.toLowerCase()
+      )
+    ) {
+
+      emails.push(
+        currentUser.email.toLowerCase()
+      );
+
+    }
+
+
+    const memberIds = [];
+
+
+    for (
+      const email of emails
+    ) {
+
+      const q =
+        query(
+          collection(db, "users"),
+          where(
+            "email",
+            "==",
+            email
+          )
+        );
+
+
+      const snapshot =
+        await getDocs(q);
+
+
+      if (
+        !snapshot.empty
+      ) {
+
+        memberIds.push(
+          snapshot.docs[0].id
+        );
+
+      }
+
+    }
+
+
+    if (!memberIds.length) {
+
+      message.textContent =
+      "Hakuna member aliyepatikana.";
 
       return;
 
@@ -1587,18 +2017,21 @@ document
       await addDoc(
         collection(
           db,
-          "messages"
+          "groups"
         ),
         {
 
-          senderId:
+          name:
+          name,
+
+          description:
+          description,
+
+          members:
+          memberIds,
+
+          createdBy:
           currentUser.uid,
-
-          receiverId:
-          currentChatUserId,
-
-          text:
-          text,
 
           createdAt:
           serverTimestamp()
@@ -1607,16 +2040,32 @@ document
       );
 
 
-      input.value = "";
+      message.textContent =
+      "Group limetengenezwa!";
 
-      status.textContent = "";
+      document
+      .getElementById("groupName")
+      .value = "";
+
+      document
+      .getElementById("groupDescription")
+      .value = "";
+
+      document
+      .getElementById("groupMembers")
+      .value = "";
+
+
+      loadGroups();
 
     }
 
     catch (error) {
 
-      status.textContent =
-      "Ujumbe haujatumwa: " +
+      console.error(error);
+
+      message.textContent =
+      "Group halijatengenezwa: " +
       error.message;
 
     }
@@ -1625,173 +2074,140 @@ document
 );
 
 
-/* ENTER SEND */
+/* LOAD GROUPS */
 
-document
-.getElementById("chatInput")
-.addEventListener(
-  "keydown",
-  event => {
+async function loadGroups() {
+
+  const currentUser =
+    auth.currentUser;
+
+  const groupChats =
+    document.getElementById(
+      "groupChats"
+    );
+
+
+  if (!currentUser) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const q =
+      query(
+        collection(db, "groups"),
+        where(
+          "members",
+          "array-contains",
+          currentUser.uid
+        )
+      );
+
+
+    const snapshot =
+      await getDocs(q);
+
+
+    groupChats.innerHTML = "";
+
 
     if (
-      event.key === "Enter"
+      snapshot.empty
     ) {
 
-      event.preventDefault();
-
-      document
-      .getElementById("sendBtn")
-      .click();
-
-    }
-
-  }
-);
-
-
-/* NEW CHAT */
-
-document
-.getElementById("newChatBtn")
-.addEventListener(
-  "click",
-  () => {
-
-    hidePages();
-
-    privateChatArea
-    .classList
-    .remove("hidden");
-
-
-    currentChatUserId =
-    null;
-
-
-    currentChatUserName =
-    null;
-
-
-    stopMessageListeners();
-
-
-    document
-    .getElementById(
-      "privateChatTitle"
-    )
-    .textContent =
-    "👤 Private Chat";
-
-
-    document
-    .getElementById(
-      "chatMessages"
-    )
-    .innerHTML =
-    "<p>Tafuta user kwanza ili kuanza chat.</p>";
-
-  }
-);
-
-
-/* GROUP */
-
-document
-.getElementById("newGroupBtn")
-.addEventListener(
-  "click",
-  () => {
-
-    hidePages();
-
-    groupArea
-    .classList
-    .remove("hidden");
-
-  }
-);
-
-
-document
-.getElementById("saveGroupBtn")
-.addEventListener(
-  "click",
-  () => {
-
-    const name =
-      document
-      .getElementById("groupName")
-      .value
-      .trim();
-
-    const members =
-      document
-      .getElementById("groupMembers")
-      .value
-      .trim();
-
-
-    if (!name || !members) {
-
-      document
-      .getElementById(
-        "groupMessage"
-      )
-      .textContent =
-      "Weka jina la group na members.";
+      groupChats.innerHTML =
+      `<div class="chatCard">
+        Hakuna group bado.
+      </div>`;
 
       return;
 
     }
 
 
-    document
-    .getElementById(
-      "groupMessage"
-    )
-    .textContent =
-    "Group imeandaliwa.";
+    snapshot.forEach(
+      groupDoc => {
+
+        const data =
+          groupDoc.data();
+
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+        "chatCard";
+
+
+        const name =
+          document.createElement(
+            "div"
+          );
+
+
+        name.className =
+        "chatName";
+
+
+        name.textContent =
+        "👥 " +
+        (
+          data.name ||
+          "Group"
+        );
+
+
+        const description =
+          document.createElement(
+            "div"
+          );
+
+
+        description.className =
+        "lastMessage";
+
+
+        description.textContent =
+        data.description ||
+        "Hakuna maelezo";
+
+
+        card.appendChild(
+          name
+        );
+
+        card.appendChild(
+          description
+        );
+
+
+        groupChats.appendChild(
+          card
+        );
+
+      }
+    );
 
   }
-);
 
+  catch (error) {
 
-/* BACK */
+    console.error(error);
 
-document
-.getElementById("backChatsBtn")
-.addEventListener(
-  "click",
-  showChats
-);
+    groupChats.innerHTML =
+    `<div class="chatCard">
+      Imeshindikana kupakia groups.
+    </div>`;
 
-document
-.getElementById("backGroupBtn")
-.addEventListener(
-  "click",
-  showChats
-);
+  }
 
-document
-.getElementById("backProfileBtn")
-.addEventListener(
-  "click",
-  showChats
-);
-
-document
-.getElementById("backLanguageBtn")
-.addEventListener(
-  "click",
-  showChats
-);
-
-document
-.getElementById("backSettingsBtn")
-.addEventListener(
-  "click",
-  showChats
-);
+}
 
 
 /* PROFILE */
@@ -1804,90 +2220,85 @@ document
 
     hidePages();
 
+    sideMenu.classList.add("hidden");
+
     profileArea
     .classList
     .remove("hidden");
 
-    sideMenu
-    .classList
-    .add("hidden");
+    await loadProfile();
+
+  }
+);
 
 
-    const user =
-      auth.currentUser;
+async function loadProfile() {
+
+  const currentUser =
+    auth.currentUser;
 
 
-    if (!user) return;
+  if (!currentUser) {
+
+    return;
+
+  }
 
 
-    try {
+  try {
 
-      const userDoc =
-        await getDoc(
-          doc(
-            db,
-            "users",
-            user.uid
-          )
-        );
-
-
-      if (
-        userDoc.exists()
-      ) {
-
-        const data =
-          userDoc.data();
-
-
-        document
-        .getElementById(
-          "profileName"
+    const userDoc =
+      await getDoc(
+        doc(
+          db,
+          "users",
+          currentUser.uid
         )
-        .value =
-        data.name || "";
+      );
 
 
-        document
-        .getElementById(
-          "profileBio"
-        )
-        .value =
-        data.bio || "";
+    if (
+      userDoc.exists()
+    ) {
 
+      const data =
+        userDoc.data();
 
-        document
-        .getElementById(
-          "profileCountry"
-        )
-        .value =
-        data.country || "";
-
-
-        document
-        .getElementById(
-          "profileLanguage"
-        )
-        .value =
-        data.language || "sw";
-
-      }
-
-    }
-
-    catch (error) {
 
       document
-      .getElementById(
-        "profileMessage"
-      )
-      .textContent =
-      error.message;
+      .getElementById("profileName")
+      .value =
+      data.name || "";
+
+
+      document
+      .getElementById("profileBio")
+      .value =
+      data.bio || "";
+
+
+      document
+      .getElementById("profileCountry")
+      .value =
+      data.country || "";
+
+
+      document
+      .getElementById("profileLanguage")
+      .value =
+      data.language || "sw";
 
     }
 
   }
-);
+
+  catch (error) {
+
+    console.error(error);
+
+  }
+
+}
 
 
 /* SAVE PROFILE */
@@ -1898,11 +2309,15 @@ document
   "click",
   async () => {
 
-    const user =
+    const currentUser =
       auth.currentUser;
 
 
-    if (!user) return;
+    if (!currentUser) {
+
+      return;
+
+    }
 
 
     try {
@@ -1911,39 +2326,31 @@ document
         doc(
           db,
           "users",
-          user.uid
+          currentUser.uid
         ),
         {
 
           name:
           document
-          .getElementById(
-            "profileName"
-          )
+          .getElementById("profileName")
           .value
           .trim(),
 
           bio:
           document
-          .getElementById(
-            "profileBio"
-          )
+          .getElementById("profileBio")
           .value
           .trim(),
 
           country:
           document
-          .getElementById(
-            "profileCountry"
-          )
+          .getElementById("profileCountry")
           .value
           .trim(),
 
           language:
           document
-          .getElementById(
-            "profileLanguage"
-          )
+          .getElementById("profileLanguage")
           .value
 
         },
@@ -1954,26 +2361,32 @@ document
 
 
       document
-      .getElementById(
-        "profileMessage"
-      )
+      .getElementById("profileMessage")
       .textContent =
-      "Profile imehifadhiwa!";
+      "Profile imehifadhiwa.";
 
     }
 
     catch (error) {
 
       document
-      .getElementById(
-        "profileMessage"
-      )
+      .getElementById("profileMessage")
       .textContent =
-      error.message;
+      "Imeshindikana kuhifadhi profile.";
 
     }
 
   }
+);
+
+
+/* BACK PROFILE */
+
+document
+.getElementById("backProfileBtn")
+.addEventListener(
+  "click",
+  showChats
 );
 
 
@@ -1987,20 +2400,22 @@ document
 
     hidePages();
 
+    sideMenu.classList.add("hidden");
+
     languageArea
     .classList
     .remove("hidden");
 
-    sideMenu
-    .classList
-    .add("hidden");
 
-
-    const user =
+    const currentUser =
       auth.currentUser;
 
 
-    if (!user) return;
+    if (!currentUser) {
+
+      return;
+
+    }
 
 
     try {
@@ -2010,7 +2425,7 @@ document
           doc(
             db,
             "users",
-            user.uid
+            currentUser.uid
           )
         );
 
@@ -2020,13 +2435,9 @@ document
       ) {
 
         document
-        .getElementById(
-          "languageSelect"
-        )
+        .getElementById("languageSelect")
         .value =
-        userDoc
-        .data()
-        .language ||
+        userDoc.data().language ||
         "sw";
 
       }
@@ -2051,11 +2462,21 @@ document
   "click",
   async () => {
 
-    const user =
+    const currentUser =
       auth.currentUser;
 
 
-    if (!user) return;
+    if (!currentUser) {
+
+      return;
+
+    }
+
+
+    const language =
+      document
+      .getElementById("languageSelect")
+      .value;
 
 
     try {
@@ -2064,16 +2485,12 @@ document
         doc(
           db,
           "users",
-          user.uid
+          currentUser.uid
         ),
         {
 
           language:
-          document
-          .getElementById(
-            "languageSelect"
-          )
-          .value
+          language
 
         },
         {
@@ -2081,9 +2498,13 @@ document
         }
       );
 
+      document
+      .getElementById("profileLanguage")
+      .value =
+      language;
 
       alert(
-        "Language imehifadhiwa!"
+        "Language imehifadhiwa."
       );
 
     }
@@ -2091,12 +2512,22 @@ document
     catch (error) {
 
       alert(
-        error.message
+        "Imeshindikana kuhifadhi language."
       );
 
     }
 
   }
+);
+
+
+/* BACK LANGUAGE */
+
+document
+.getElementById("backLanguageBtn")
+.addEventListener(
+  "click",
+  showChats
 );
 
 
@@ -2118,7 +2549,231 @@ document
     .classList
     .add("hidden");
 
+    updateSettingsButtons();
+
   }
+);
+
+
+/* DARK MODE */
+
+let darkMode =
+localStorage.getItem(
+  "chatpoaDarkMode"
+) === "true";
+
+
+function applyDarkMode() {
+
+  if (darkMode) {
+
+    document.body
+    .classList
+    .add("dark");
+
+  }
+
+  else {
+
+    document.body
+    .classList
+    .remove("dark");
+
+  }
+
+  updateSettingsButtons();
+
+}
+
+
+function updateSettingsButtons() {
+
+  const darkButton =
+    document.getElementById(
+      "darkModeBtn"
+    );
+
+  const notificationButton =
+    document.getElementById(
+      "notificationsBtn"
+    );
+
+
+  if (darkButton) {
+
+    darkButton.textContent =
+      darkMode
+      ? "ON"
+      : "OFF";
+
+  }
+
+
+  if (notificationButton) {
+
+    notificationButton.textContent =
+      notificationsEnabled
+      ? "ON"
+      : "OFF";
+
+  }
+
+}
+
+
+document
+.getElementById("darkModeBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    darkMode =
+    !darkMode;
+
+    localStorage.setItem(
+      "chatpoaDarkMode",
+      darkMode
+    );
+
+    applyDarkMode();
+
+  }
+);
+
+
+/* NOTIFICATIONS */
+
+let notificationsEnabled =
+localStorage.getItem(
+  "chatpoaNotifications"
+) !== "false";
+
+
+document
+.getElementById("notificationsBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    notificationsEnabled =
+    !notificationsEnabled;
+
+    localStorage.setItem(
+      "chatpoaNotifications",
+      notificationsEnabled
+    );
+
+    updateSettingsButtons();
+
+    document
+    .getElementById("settingsMessage")
+    .textContent =
+    notificationsEnabled
+    ? "Notifications zimewashwa."
+    : "Notifications zimezimwa.";
+
+  }
+);
+
+
+/* PRIVACY */
+
+document
+.getElementById("privacyBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    document
+    .getElementById("settingsMessage")
+    .textContent =
+    "🔒 Privacy: Chatpoa huhifadhi taarifa za akaunti yako ili huduma ya chat ifanye kazi.";
+
+  }
+);
+
+
+/* CHANGE PASSWORD */
+
+document
+.getElementById("changePasswordBtn")
+.addEventListener(
+  "click",
+  async () => {
+
+    const currentUser =
+      auth.currentUser;
+
+
+    if (!currentUser) {
+
+      return;
+
+    }
+
+
+    const newPassword =
+      prompt(
+        "Weka password mpya (angalau herufi 6):"
+      );
+
+
+    if (!newPassword) {
+
+      return;
+
+    }
+
+
+    if (
+      newPassword.length < 6
+    ) {
+
+      alert(
+        "Password iwe na angalau herufi 6."
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      await updatePassword(
+        currentUser,
+        newPassword
+      );
+
+
+      document
+      .getElementById("settingsMessage")
+      .textContent =
+      "Password imebadilishwa kikamilifu.";
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Firebase inahitaji uthibitisho wa login tena kabla ya kubadilisha password."
+      );
+
+    }
+
+  }
+);
+
+
+/* BACK SETTINGS */
+
+document
+.getElementById("backSettingsBtn")
+.addEventListener(
+  "click",
+  showChats
 );
 
 
@@ -2141,6 +2796,30 @@ document
     }
 
     await signOut(auth);
+
+  }
+);
+
+
+/* START */
+
+applyDarkMode();
+
+if (auth.currentUser) {
+
+  loadGroups();
+
+}
+
+onAuthStateChanged(
+  auth,
+  user => {
+
+    if (user) {
+
+      loadGroups();
+
+    }
 
   }
 );
